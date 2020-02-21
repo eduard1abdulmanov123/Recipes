@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/item_list_recipe_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/example_iamge"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_list_recipe_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="Сырники из творого и из слоновой жопы"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/color_text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/item_list_recipe_image"
+                app:layout_constraintTop_toTopOf="@+id/item_list_recipe_image" />
+
+            <TextView
+                android:id="@+id/item_list_recipe_count_ingredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="10 ингредиентов"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/item_list_recipe_name"
+                app:layout_constraintTop_toBottomOf="@+id/item_list_recipe_name" />
+
+            <View
+                android:id="@+id/item_list_recipe_separate_ingredients_portions"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:background="@color/color_line_separate"
+                app:layout_constraintBottom_toBottomOf="@+id/item_list_recipe_count_ingredients"
+                app:layout_constraintStart_toEndOf="@+id/item_list_recipe_count_ingredients"
+                app:layout_constraintTop_toTopOf="@+id/item_list_recipe_count_ingredients" />
+
+            <TextView
+                android:id="@+id/item_list_recipe_count_portions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="20 порций"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/item_list_recipe_separate_ingredients_portions"
+                app:layout_constraintTop_toTopOf="@+id/item_list_recipe_count_ingredients" />
+
+            <TextView
+                android:id="@+id/item_list_recipe_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="20 минут"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/item_list_recipe_count_ingredients"
+                app:layout_constraintTop_toBottomOf="@+id/item_list_recipe_count_ingredients" />
+
+            <ImageView
+                android:id="@+id/item_list_recipe_thumb_up_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_thumb_up"
+                android:tint="@color/color_icon_light"
+                app:layout_constraintStart_toStartOf="@+id/item_list_recipe_time"
+                app:layout_constraintTop_toBottomOf="@+id/item_list_recipe_time" />
+
+            <TextView
+                android:id="@+id/item_list_recipe_thumb_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="22007"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/item_list_recipe_thumb_up_image"
+                app:layout_constraintTop_toTopOf="@+id/item_list_recipe_thumb_up_image" />
+
+            <ImageView
+                android:id="@+id/item_list_recipe_thumb_down_image"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="32dp"
+                android:src="@drawable/ic_thumb_down"
+                android:tint="@color/color_icon_light"
+                app:layout_constraintStart_toEndOf="@+id/item_list_recipe_thumb_up"
+                app:layout_constraintTop_toTopOf="@+id/item_list_recipe_thumb_up" />
+
+            <TextView
+                android:id="@+id/item_list_recipe_thumb_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="2398"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/item_list_recipe_thumb_down_image"
+                app:layout_constraintTop_toTopOf="@+id/item_list_recipe_thumb_down_image" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
