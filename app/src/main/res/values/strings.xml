@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Recipes</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--error-->
+    <string name="error">ОЙ! Что-то пошло не так</string>
+    <string name="error_refresh">ПОВТОРИТЬ</string>
+    <string name="error_network">Проверьте соединение с интернетом или немного подождите</string>
+
 </resources>

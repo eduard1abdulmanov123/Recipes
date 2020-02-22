@@ -1,8 +1,9 @@
 package abdulmanov.eduard.recipes.data.network
 
-import abdulmanov.eduard.recipes.data.network.model.*
+import abdulmanov.eduard.recipes.domain.models.Recipe
 import android.util.Log
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Element
 
 class RecipesService {
 
@@ -11,123 +12,81 @@ class RecipesService {
         private const val RECEPTY = "recepty"
     }
 
-    fun getCategories():List<Category>{
-        return Jsoup.connect(BASE_URL).get().run {
-            select("div.tag-selector__selects-box")[0]
-                .child(0)
-                .select("ul.select-suggest__result.js-select-suggest__result")[0]
-                .children()
-                .map {
-                    Category(
-                        it.attr("data-select-suggest-value"),
-                        it.html()
-                    )
-                }
-        }
-    }
-
-    fun getRecipes(category:String,page:Int):List<ShortRecipe>{
+    fun getRecipes(category:String,page:Int):List<Recipe>{
         return Jsoup.connect("$BASE_URL/$RECEPTY/$category?page=$page").get().run {
             select("div.tile-list__horizontal-tile.horizontal-tile.js-portions-count-parent.js-bookmark__obj")
                 .map {
-                    val title = it.select("h3.horizontal-tile__item-title.item-title")[0]
-                        .child(0)
-                        .child(0)
-                        .html().replace("&nbsp;"," ")
-
-                    val link = it.select("h3.horizontal-tile__item-title.item-title")[0]
-                        .child(0)
-                        .attr("href")
-
-                    val image = it.select("div.horizontal-tile__preview")[0]
-                        .child(0)
-                        .child(1)
-                        .attr("data-src")
-
-                    val countIngredients = it.select("div.horizontal-tile__item-specifications")[0]
-                        .child(0)
-                        .text()
-
-                    val countPortion = it.select("div.horizontal-tile__item-specifications")[0]
-                        .child(1)
-                        .text()
-
-                    val time:String = it.select("div.horizontal-tile__item-specifications")[0]
-                        .child(2)
-                        .text()
-
-                    val countLike = it.select("span.widget-list__like-count")[0]
-                        .child(1)
-                        .text()
-
-                    val countDislike = it.select("span.widget-list__like-count.widget-list__like-count_dislike")[0]
-                        .child(1)
-                        .text()
-
-                    ShortRecipe(
-                        title,
-                        countIngredients,
-                        countPortion,
-                        time,
-                        countLike,
-                        countDislike,
-                        link,
-                        image
+                    Recipe(
+                        id = it.getId(),
+                        link = it.getLink(),
+                        name = it.getTitle(),
+                        image = it.getImage(),
+                        countIngredient = it.getCountIngredient(),
+                        countPortion = it.getCountPortion(),
+                        time = it.getTime(),
+                        countLike = it.getCountLike(),
+                        countDislike = it.getCountDislike()
                     )
                 }
         }
     }
 
-    fun getRecipe(url:String){
-        return Jsoup.connect(url).get().run {
-            val title = select("h1.recipe__name.g-h1").text()
-            val video = select("div.recipe__video.js-video-sticky.js-video-container")
-                .select("iframe")
-                .attr("src")
-            val description = select("p.recipe__description.layout__content-col._default-mod").text()
+    private fun Element.getId():Long{
+        return select("div.bookmark.js-tooltip.js-bookmark__label")
+            .attr("data-id")
+            .apply {
+                Log.d("RecipesService",this)
+            }
+            .toLong()
+    }
 
-            val naturalList = select("ul.nutrition__list")[0]
-                .children()
-                .map {
-                    Natural(
-                        it.select("p.nutrition__name").text(),
-                        it.select("p.nutrition__weight").text(),
-                        it.select("p.nutrition__percent").text()
-                    )
-                }
+    private fun Element.getTitle():String{
+        return select("h3.horizontal-tile__item-title.item-title")[0]
+            .child(0)
+            .child(0)
+            .html()
+            .replace("&nbsp;"," ")
+    }
 
-            val ingredientList = select("div.ingredients-list__content")[0]
-                .children()
-                .map {
-                   /* val jsonObject = JSONObject(it.attr("data-ingredient-object"))
-                    Ingredient(
-                        jsonObject.getString("id"),
-                        jsonObject.getString("name"),
-                        jsonObject.getString("amount")
-                    )*/
-                }
+    private fun Element.getLink():String{
+        return select("h3.horizontal-tile__item-title.item-title")[0]
+            .child(0)
+            .attr("href")
+    }
 
-            val time = select("div.instruction-controls")[0]
-                .child(1)
-                .text()
+    private fun Element.getImage():String{
+        return select("div.horizontal-tile__preview")[0]
+            .child(0)
+            .child(1)
+            .attr("data-src")
+    }
 
-            val steps = select("ul.recipe__steps")[0]
-                .children()
-                .map {
-                    Step(
-                        it.attr("data-counter").toInt(),
-                        it.select("img.g-print-visible").attr("src"),
-                        it.select("span.instruction__description.js-steps__description").text().substring(3)
-                    )
-                }
+    private fun Element.getCountIngredient():String{
+        return select("div.horizontal-tile__item-specifications")[0]
+            .child(0)
+            .text()
+    }
 
-            Log.d("RecipesService", "title = $title")
-            Log.d("RecipesService", "video = $video")
-            Log.d("RecipesService", "description = $description")
-            Log.d("RecipesService", "naturalList = $naturalList")
-            Log.d("RecipesService", "ingredientList = $ingredientList")
-            Log.d("RecipesService", "time = $time")
-            Log.d("RecipesService", "steps = $steps")
-        }
+    private fun Element.getCountPortion():String{
+        return select("div.horizontal-tile__item-specifications")[0]
+            .child(1)
+            .text()
+    }
+
+    private fun Element.getTime():String{
+        return select("span.prep-time")
+            .text()
+    }
+
+    private fun Element.getCountLike():String{
+        return select("span.widget-list__like-count")[0]
+            .child(1)
+            .text()
+    }
+
+    private fun Element.getCountDislike():String{
+        return select("span.widget-list__like-count.widget-list__like-count_dislike")[0]
+            .child(1)
+            .text()
     }
 }

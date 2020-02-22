@@ -1,9 +1,9 @@
 package abdulmanov.eduard.recipes.data.network
 
-import abdulmanov.eduard.recipes.data.network.model.Ingredient
-import abdulmanov.eduard.recipes.data.network.model.Natural
-import abdulmanov.eduard.recipes.data.network.model.Step
-import android.util.Log
+import abdulmanov.eduard.recipes.domain.models.DetailsRecipe
+import abdulmanov.eduard.recipes.domain.models.Ingredient
+import abdulmanov.eduard.recipes.domain.models.Natural
+import abdulmanov.eduard.recipes.domain.models.Step
 import okhttp3.MediaType.Companion.toMediaType
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -19,8 +19,7 @@ class DetailsRecipeService {
     private val client = OkHttpClient()
     private val mediaType = "application/json; charset=utf-8".toMediaType()
 
-    fun getDetailsRecipe(url:String){
-        val start = System.currentTimeMillis()
+    fun getDetailsRecipe(url:String):DetailsRecipe{
         return Jsoup.connect(url).get().run {
 
             val id = getRecipeId()
@@ -34,27 +33,18 @@ class DetailsRecipeService {
             val time = getTime()
             val steps = getSteps()
 
-            Log.d("DetailsRecipe","id = $id")
-            Log.d("DetailsRecipe","name = $name")
-            Log.d("DetailsRecipe","image = $image")
-            Log.d("DetailsRecipe","video = $video")
-            photo.forEach {
-                Log.d("DetailsRecipe","photo = $it")
-            }
-            Log.d("DetailsRecipe","description = $description")
-            naturalList.forEach {
-                Log.d("DetailsRecipe","natural = $it")
-            }
-            ingredients.forEach {
-                Log.d("DetailsRecipe","ingredient = $it")
-            }
-            Log.d("DetailsRecipe","time = $time")
-            steps.forEach {
-                Log.d("DetailsRecipe","step = $it")
-            }
-
-            val delay = System.currentTimeMillis() - start
-            Log.d("DetailsRecipe","delay = ${delay}")
+            return DetailsRecipe(
+                id,
+                name,
+                image,
+                video,
+                photo,
+                description,
+                naturalList,
+                ingredients,
+                time,
+                steps
+            )
         }
     }
 

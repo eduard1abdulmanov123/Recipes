@@ -2,6 +2,7 @@ package abdulmanov.eduard.recipes.domain.models
 
 data class Recipe(
     val id: Long,
+    val link:String,
     val name: String,
     val image: String,
     val countIngredient: String,

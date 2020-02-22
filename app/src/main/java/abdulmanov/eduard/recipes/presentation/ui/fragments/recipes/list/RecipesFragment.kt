@@ -7,14 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 
 import abdulmanov.eduard.recipes.R
+import abdulmanov.eduard.recipes.presentation.common.ListState
+import abdulmanov.eduard.recipes.presentation.common.visibilityGone
 import abdulmanov.eduard.recipes.presentation.ui.adapters.RecipesDelegateAdapter
 import abdulmanov.eduard.recipes.presentation.ui.model.CategoryViewModel
 import abdulmanov.eduard.recipes.presentation.ui.model.RecipeViewModel
 import android.util.Log
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.delegateadapter.delegate.diff.DiffUtilCompositeAdapter
 import kotlinx.android.synthetic.main.fragment_recipes.*
+import kotlinx.android.synthetic.main.layout_error.*
+import kotlinx.android.synthetic.main.layout_progress_bar.*
 import kotlin.random.Random
 
 class RecipesFragment : Fragment() {
@@ -43,17 +49,39 @@ class RecipesFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.d("RecipesViewModel", "Called ViewModelProviders.of")
-        viewModel = ViewModelProviders.of(this).get(RecipesViewModel::class.java)
         return inflater.inflate(R.layout.fragment_recipes, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(RecipesViewModel::class.java)
+        viewModel.state.observe(viewLifecycleOwner, Observer {
+            when(it){
+                is ListState.EmptyProgressState->{
+                    layout_progress_bar.visibilityGone(true)
+                    layout_error.visibilityGone(false)
+                    recipes_recycler_view.visibilityGone(false)
+                }
+                is ListState.EmptyErrorState->{
+                    layout_error.visibilityGone(true)
+                    layout_progress_bar.visibilityGone(false)
+                    recipes_recycler_view.visibilityGone(false)
+                    error_secondary_message.setText(it.message)
+                }
+                is ListState.DataState<*>->{
+                    recipes_recycler_view.visibilityGone(true)
+                    layout_progress_bar.visibilityGone(false)
+                    layout_error.visibilityGone(false)
+                    (recipes_recycler_view.adapter as DiffUtilCompositeAdapter).swapData(it.data as List<RecipeViewModel>)
+                }
+            }
+        })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initUI()
-        getMockData().run {
-            (recipes_recycler_view.adapter as DiffUtilCompositeAdapter).swapData(this)
-        }
+        viewModel.loadNewPage()
     }
 
     private fun initUI(){
