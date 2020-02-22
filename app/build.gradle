@@ -40,6 +40,12 @@ dependencies {
     /*ui*/
     implementation "com.google.android.material:material:1.1.0"
     implementation 'com.github.liverm0r:delegateadapters:v2.03'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
+    def rx_android_version = "2.1.1"
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
 
     def jsoup_version = "1.12.1"
     implementation "org.jsoup:jsoup:$jsoup_version"
