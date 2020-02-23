@@ -16,8 +16,9 @@ class RecipesRepositoryImpl(
     override fun getRecipes(category: String, page: Int): Single<List<Recipe>> {
         return Single.create<List<Recipe>>{
             val data = recipesService.getRecipes(category,page)
+            Log.d("RecipesRepositoryImpl",page.toString())
             data.forEach {
-                Log.d("RecipesRepositoryImpl",it.toString())
+                Log.d("RecipesRepositoryImpl",it.name)
             }
             it.onSuccess(data)
         }

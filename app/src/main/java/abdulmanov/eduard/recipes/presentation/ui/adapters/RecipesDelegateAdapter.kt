@@ -19,7 +19,7 @@ class RecipesDelegateAdapter (
     override fun onBind(item: RecipeViewModel, viewHolder: KViewHolder) {
         viewHolder.run {
             itemView.setOnClickListener { itemViewClickListener.invoke(item) }
-            item_list_recipe_image.loadImg(item.image)
+            if(item.image.isNotEmpty()) item_list_recipe_image.loadImg(item.image)
             item_list_recipe_name.text = item.name
             item_list_recipe_count_ingredients.text = item.countIngredient
             item_list_recipe_count_portions.text = item.countPortion

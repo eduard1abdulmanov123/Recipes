@@ -14,7 +14,11 @@ class RecipesService {
 
     fun getRecipes(category:String,page:Int):List<Recipe>{
         return Jsoup.connect("$BASE_URL/$RECEPTY/$category?page=$page").get().run {
-            select("div.tile-list__horizontal-tile.horizontal-tile.js-portions-count-parent.js-bookmark__obj")
+            select("div.js-updated-page__content.js-load-more-content")[0]
+                .children()
+                .filter{
+                    it.className() == "tile-list__horizontal-tile horizontal-tile js-portions-count-parent js-bookmark__obj"
+                }
                 .map {
                     Recipe(
                         id = it.getId(),

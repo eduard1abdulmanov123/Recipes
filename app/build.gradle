@@ -38,7 +38,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     /*ui*/
-    implementation "com.google.android.material:material:1.1.0"
+    implementation "com.google.android.material:material:1.0.0"
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.liverm0r:delegateadapters:v2.03'
     implementation 'com.wang.avi:library:2.1.3'
