@@ -7,20 +7,32 @@ import android.view.View
 import android.view.ViewGroup
 
 import abdulmanov.eduard.recipes.R
+import abdulmanov.eduard.recipes.presentation.app.BaseApp
 import abdulmanov.eduard.recipes.presentation.ui.base.ListState
 import abdulmanov.eduard.recipes.presentation.common.visibilityGone
 import abdulmanov.eduard.recipes.presentation.ui.adapters.LoadingDelegateAdapter
 import abdulmanov.eduard.recipes.presentation.ui.adapters.RecipesDelegateAdapter
 import abdulmanov.eduard.recipes.presentation.ui.base.LinearInfiniteScrollListener
+import abdulmanov.eduard.recipes.presentation.ui.base.VerticalItemDecoration
+import abdulmanov.eduard.recipes.presentation.ui.base.ViewModelFactory
 import abdulmanov.eduard.recipes.presentation.ui.model.CategoryViewModel
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
+import com.example.delegateadapter.delegate.CompositeDelegateAdapter
 import com.example.delegateadapter.delegate.diff.DiffUtilCompositeAdapter
 import com.example.delegateadapter.delegate.diff.IComparableItem
+import jp.wasabeef.recyclerview.animators.FadeInAnimator
+import jp.wasabeef.recyclerview.animators.LandingAnimator
+import jp.wasabeef.recyclerview.animators.ScaleInAnimator
 import kotlinx.android.synthetic.main.fragment_recipes.*
 import kotlinx.android.synthetic.main.layout_error.*
 import kotlinx.android.synthetic.main.layout_progress_bar.*
+import javax.inject.Inject
 
 class RecipeListFragment : Fragment() {
 
@@ -36,12 +48,20 @@ class RecipeListFragment : Fragment() {
         }
     }
 
-    private lateinit var category:CategoryViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var viewModel:RecipeListViewModel
 
+    private lateinit var category:CategoryViewModel
+
     private lateinit var scrollListener:LinearInfiniteScrollListener
     private lateinit var adapter:DiffUtilCompositeAdapter
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity!!.application as BaseApp).appComponent.inject(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,9 +77,14 @@ class RecipeListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
-        viewModel = ViewModelProvider(this).get(RecipeListViewModel::class.java)
+        viewModel = ViewModelProvider(this,viewModelFactory).get(RecipeListViewModel::class.java)
+        Log.d("RecipeListFragment",category.value)
+        viewModel.category = category.value
         viewModel.state.observe(viewLifecycleOwner, Observer(this::updateState))
         viewModel.data.observe(viewLifecycleOwner, Observer(this::updateItems))
+        if(savedInstanceState == null){
+            viewModel.restart()
+        }
     }
 
     private fun initUI(){
@@ -86,14 +111,15 @@ class RecipeListFragment : Fragment() {
         recipes_recycler_view.run {
             setHasFixedSize(true)
             addOnScrollListener(this@RecipeListFragment.scrollListener)
-            itemAnimator = null
+            addItemDecoration(VerticalItemDecoration(16,8,context!!))
+            (itemAnimator as SimpleItemAnimator).addDuration = 0
             layoutManager = linearLayoutManager
             adapter = this@RecipeListFragment.adapter
         }
     }
 
     private fun initScrollListener(layoutManager: LinearLayoutManager){
-        scrollListener = LinearInfiniteScrollListener(layoutManager,1){
+        scrollListener = LinearInfiniteScrollListener(layoutManager,2){
             viewModel.loadNewPage()
         }
     }
@@ -135,6 +161,7 @@ class RecipeListFragment : Fragment() {
                 layout_progress_bar.visibilityGone(!state.swipeRefresh)
                 recipes_content.visibilityGone(state.swipeRefresh)
                 layout_error.visibilityGone(false)
+                scrollListener.setStartState()
             }
             is ListState.EmptyErrorState->{
                 /*Задержка делается для того, чтобы избежать показа загрузки из SwipeRefresh
@@ -157,6 +184,7 @@ class RecipeListFragment : Fragment() {
                 error_refresh_progress_bar.visibilityGone(true)
             }
             is ListState.DataState->{
+                Log.d("RecipeListFragment","isDateState")
                 layout_progress_bar.visibilityGone(false)
                 layout_error.visibilityGone(false)
                 recipes_content.run {
@@ -174,7 +202,7 @@ class RecipeListFragment : Fragment() {
     }
 
     private fun updateItems(recipes:List<IComparableItem>){
-        (recipes_recycler_view.adapter as DiffUtilCompositeAdapter ).swapData(recipes)
+        adapter.swapData(recipes)
     }
 
 }

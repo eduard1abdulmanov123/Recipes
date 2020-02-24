@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().apply {
                 replace(
                     R.id.main_container_id,
-                    RecipeListFragment.newInstance(CategoryViewModel("Заготовки", ""))
+                    RecipeListFragment.newInstance(CategoryViewModel("Бульоны", "bulony"))
                 )
             }.commit()
         }

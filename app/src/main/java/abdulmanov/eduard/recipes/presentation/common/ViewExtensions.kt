@@ -29,3 +29,10 @@ fun ImageView.loadImg(imageUrl: String, placeholderRes: Int? = null) {
         fit().into(this@loadImg)
     }
 }
+
+fun ImageView.loadImg(imageUrl: Int, placeholderRes: Int? = null) {
+    Picasso.get().load(imageUrl).apply {
+        placeholderRes?.let {placeholder(it) }
+        fit().into(this@loadImg)
+    }
+}

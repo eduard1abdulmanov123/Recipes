@@ -9,6 +9,7 @@
 
     <color name="color_icon_dark">#B3000000</color>
     <color name="color_icon_light">#5A5A5A</color>
+    <color name="color_placeholder">#EBEBEB</color>
 
     <color name="color_line_separate">#A9A9A9</color>
 
