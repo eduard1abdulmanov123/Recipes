@@ -2,6 +2,7 @@ package abdulmanov.eduard.recipes.presentation.ui.activities
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.ui.fragments.recipes.list.RecipeListFragment
+import abdulmanov.eduard.recipes.presentation.ui.fragments.recipes.tape.TapeFragment
 import abdulmanov.eduard.recipes.presentation.ui.model.CategoryViewModel
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().apply {
                 replace(
                     R.id.main_container_id,
-                    RecipeListFragment.newInstance(CategoryViewModel("Бульоны", "bulony"))
+                    TapeFragment()
                 )
             }.commit()
         }

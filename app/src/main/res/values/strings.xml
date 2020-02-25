@@ -6,4 +6,8 @@
     <string name="error_refresh">ПОВТОРИТЬ</string>
     <string name="error_network">Проверьте соединение с интернетом или немного подождите</string>
 
+    <!--tape-->
+    <string name="tape_title">Лента</string>
+    <string name="tape_best_recipes_of_the_day">Лучшие рецепты дня</string>
+
 </resources>

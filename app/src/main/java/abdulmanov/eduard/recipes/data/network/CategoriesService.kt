@@ -14,8 +14,8 @@ class CategoriesService {
             categories.subList(1,categories.size)
                 .map {
                     Category(
-                        it.attr("data-select-suggest-value"),
-                        it.html()
+                        it.html(),
+                        it.attr("data-select-suggest-value")
                     )
                 }
         }

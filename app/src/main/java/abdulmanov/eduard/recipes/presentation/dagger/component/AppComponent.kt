@@ -2,6 +2,7 @@ package abdulmanov.eduard.recipes.presentation.dagger.component
 
 import abdulmanov.eduard.recipes.presentation.dagger.module.*
 import abdulmanov.eduard.recipes.presentation.ui.fragments.recipes.list.RecipeListFragment
+import abdulmanov.eduard.recipes.presentation.ui.fragments.recipes.tape.TapeFragment
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
@@ -17,4 +18,6 @@ interface AppComponent{
     }
 
     fun inject(recipeListFragment: RecipeListFragment)
+
+    fun inject(tapeFragment: TapeFragment)
 }

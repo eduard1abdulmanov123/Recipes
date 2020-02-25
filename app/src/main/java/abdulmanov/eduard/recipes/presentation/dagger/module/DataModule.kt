@@ -1,5 +1,6 @@
 package abdulmanov.eduard.recipes.presentation.dagger.module
 
+import abdulmanov.eduard.recipes.data.network.CategoriesService
 import abdulmanov.eduard.recipes.data.network.DetailsRecipeService
 import abdulmanov.eduard.recipes.data.network.RecipesService
 import dagger.Module
@@ -10,6 +11,12 @@ import javax.inject.Singleton
 
 @Module
 class DataModule {
+
+    @Singleton
+    @Provides
+    fun provideCategoriesService():CategoriesService{
+        return CategoriesService()
+    }
 
     @Singleton
     @Provides

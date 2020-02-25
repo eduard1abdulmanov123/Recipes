@@ -5,6 +5,7 @@ import abdulmanov.eduard.recipes.presentation.dagger.component.DaggerAppComponen
 import android.app.Application
 import com.squareup.picasso.LruCache
 import com.squareup.picasso.Picasso
+import io.reactivex.plugins.RxJavaPlugins
 
 class BaseApp:Application() {
 
@@ -19,6 +20,7 @@ class BaseApp:Application() {
     override fun onCreate() {
         super.onCreate()
         initPicasso()
+        //RxJavaPlugins.setErrorHandler { }
     }
 
     private fun initPicasso() {
