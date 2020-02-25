@@ -5,7 +5,6 @@ import abdulmanov.eduard.recipes.domain.models.Ingredient
 import abdulmanov.eduard.recipes.domain.models.Natural
 import abdulmanov.eduard.recipes.domain.models.Step
 import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaType
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import okhttp3.OkHttpClient
@@ -19,9 +18,6 @@ class DetailsRecipeService(
     private val client:OkHttpClient,
     private val mediaType: MediaType
 ) {
-
-    /*private val client = OkHttpClient()
-    private val mediaType = "application/json; charset=utf-8".toMediaType()*/
 
     fun getDetailsRecipe(url:String):DetailsRecipe{
         return Jsoup.connect(url).get().run {

@@ -7,18 +7,34 @@ import org.jsoup.nodes.Element
 
 class RecipesService {
 
-    companion object{
-        private const val BASE_URL = "https://eda.ru/"
-        private const val RECEPTY = "recepty"
-    }
-
     fun getRecipes(category:String,page:Int):List<Recipe>{
-        return Jsoup.connect("$BASE_URL/$RECEPTY/$category?page=$page").get().run {
+        return Jsoup.connect("https://eda.ru/recepty/$category?page=$page").get().run {
             select("div.js-updated-page__content.js-load-more-content")[0]
                 .children()
                 .filter{
                     it.className() == "tile-list__horizontal-tile horizontal-tile js-portions-count-parent js-bookmark__obj"
                 }
+                .map {
+                    Recipe(
+                        id = it.getId(),
+                        link = it.getLink(),
+                        name = it.getTitle(),
+                        image = it.getImage(),
+                        countIngredient = it.getCountIngredient(),
+                        countPortion = it.getCountPortion(),
+                        time = it.getTime(),
+                        countLike = it.getCountLike(),
+                        countDislike = it.getCountDislike()
+                    )
+                }
+        }
+    }
+
+    fun getBestRecipesOfTheDay():List<Recipe>{
+        return Jsoup.connect("https://eda.ru/avtory").get().run {
+            select("div.widgets-gallery_content-pad")[0]
+                .select("ul.inner-gallery__scroller.js-gall-scroller")[0]
+                .children()
                 .map {
                     Recipe(
                         id = it.getId(),
