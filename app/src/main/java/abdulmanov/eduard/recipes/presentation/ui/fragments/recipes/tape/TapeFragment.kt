@@ -13,6 +13,7 @@ import abdulmanov.eduard.recipes.presentation.ui.adapters.BestRecipesAdapter
 import abdulmanov.eduard.recipes.presentation.ui.base.HorizontalItemDecoration
 import abdulmanov.eduard.recipes.presentation.ui.mapper.RecipesViewModelMapperImpl
 import android.content.Context
+import android.os.SystemClock
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -43,11 +44,14 @@ class TapeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initUI()
+
+        val current = System.currentTimeMillis()
         tapeUseCase.execute()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
+                    Log.d("TapeFragment","${System.currentTimeMillis() - current}")
                     Log.d("TapeFragment","bestRecipes")
                     it.bestRecipes.forEach {
                         Log.d("TapeFragment",it.toString())

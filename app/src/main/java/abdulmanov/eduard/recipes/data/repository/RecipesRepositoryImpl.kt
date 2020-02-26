@@ -8,8 +8,9 @@ import abdulmanov.eduard.recipes.domain.models.CategoryWithRecipes
 import abdulmanov.eduard.recipes.domain.models.DetailsRecipe
 import abdulmanov.eduard.recipes.domain.models.Recipe
 import abdulmanov.eduard.recipes.domain.repositories.RecipesRepository
-import android.util.Log
 import io.reactivex.Single
+import java.util.concurrent.Callable
+import java.util.concurrent.Executors
 
 class RecipesRepositoryImpl(
     private val categoriesService:CategoriesService,
@@ -31,11 +32,15 @@ class RecipesRepositoryImpl(
 
     override fun getRecipesForCategories(categories: List<Category>): Single<List<CategoryWithRecipes>> {
         return Single.create<List<CategoryWithRecipes>> {
-            val data = categories.map { category ->
-                Log.d("RecipesForCategory","${category.value}")
-                val recipes = recipesService.getRecipes(category.value,1)
-                Log.d("RecipesForCategory","$recipes")
-                CategoryWithRecipes(category,recipes)
+            val pool = Executors.newFixedThreadPool(categories.size)
+            val tasks = categories.map { category ->
+                Callable<CategoryWithRecipes> {
+                    val recipes = recipesService.getRecipes(category.value,1)
+                    CategoryWithRecipes(category,recipes)
+                }
+            }
+            val data = pool.invokeAll(tasks).map {future->
+                future.get()
             }
             it.onSuccess(data)
         }

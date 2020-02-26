@@ -7,11 +7,13 @@ class CategoriesService {
 
     fun getCategories():List<Category>{
         return Jsoup.connect("https://eda.ru/").get().run {
-            val categories = select("div.tag-selector__selects-box")[0]
+           select("div.tag-selector__selects-box")[0]
                 .child(0)
                 .select("ul.select-suggest__result.js-select-suggest__result")[0]
                 .children()
-            categories.subList(1,categories.size)
+                .run {
+                    subList(1,this.size)
+                }
                 .map {
                     Category(
                         it.html(),

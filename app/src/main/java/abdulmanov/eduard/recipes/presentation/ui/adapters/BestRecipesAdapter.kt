@@ -23,6 +23,7 @@ class BestRecipesAdapter:BaseAdapter<RecipeViewModel>() {
                 val size = context.getScreenSize()
                 layoutParams.width = (size.x*0.8).toInt()
                 layoutParams.height = (size.y*0.25).toInt()
+                Log.d("BestRecipesAdapter","${layoutParams.width} ${layoutParams.height}")
             }
         }
 
