@@ -2,21 +2,17 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/item_list_best_recipe_card"
+    android:id="@+id/best_recipe_card_view"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:cardCornerRadius="8dp">
 
     <RelativeLayout
-        android:id="@+id/item_list_best_recipe_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/item_list_best_recipe_image"
+            android:id="@+id/best_recipe_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -25,19 +21,19 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="-40dp"
-            android:layout_below="@id/item_list_best_recipe_image"
-            android:layout_alignStart="@id/item_list_best_recipe_image"
-            android:layout_alignEnd="@id/item_list_best_recipe_image">
+            android:layout_below="@id/best_recipe_image"
+            android:layout_alignStart="@id/best_recipe_image"
+            android:layout_alignEnd="@id/best_recipe_image"
+            android:layout_marginTop="-40dp">
 
             <View
-                android:id="@+id/item_list_best_recipe_blackout"
+                android:id="@+id/best_recipe_blackout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/rectangle_gray_transparent_gradient_bottom"/>
+                android:background="@drawable/gradient_blackout_bottom_to_top"/>
 
             <ImageView
-                android:id="@+id/item_list_best_recipe_count_like_image"
+                android:id="@+id/best_recipe_count_like_image"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_centerVertical="true"
@@ -46,17 +42,17 @@
                 android:tint="@android:color/white"/>
 
             <TextView
-                android:id="@+id/item_list_best_recipe_count_like"
+                android:id="@+id/best_recipe_count_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_toEndOf="@id/item_list_best_recipe_count_like_image"
+                android:layout_toEndOf="@id/best_recipe_count_like_image"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="4dp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/item_list_best_recipe_time"
+                android:id="@+id/best_recipe_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -68,18 +64,18 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/item_list_best_recipe_name"
+            android:id="@+id/best_recipe_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/best_recipe_image"
+            android:layout_alignStart="@id/best_recipe_image"
+            android:layout_alignEnd="@id/best_recipe_image"
             android:layout_margin="8dp"
-            android:singleLine="true"
-            android:ellipsize="end"
             android:textSize="15sp"
             android:textColor="@color/color_text_primary"
             android:textStyle="bold"
-            android:layout_below="@id/item_list_best_recipe_image"
-            android:layout_alignStart="@id/item_list_best_recipe_image"
-            android:layout_alignEnd="@id/item_list_best_recipe_image"/>
+            android:singleLine="true"
+            android:ellipsize="end"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

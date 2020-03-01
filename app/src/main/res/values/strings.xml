@@ -9,5 +9,6 @@
     <!--tape-->
     <string name="tape_title">Лента</string>
     <string name="tape_best_recipes_of_the_day">Лучшие рецепты дня</string>
+    <string name="tape_more">Еще</string>
 
 </resources>

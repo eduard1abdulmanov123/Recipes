@@ -5,38 +5,55 @@ import abdulmanov.eduard.recipes.presentation.common.getScreenSize
 import abdulmanov.eduard.recipes.presentation.common.inflate
 import abdulmanov.eduard.recipes.presentation.common.loadImg
 import abdulmanov.eduard.recipes.presentation.ui.model.RecipeViewModel
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_best_recipe.view.*
 
-class BestRecipesAdapter:BaseAdapter<RecipeViewModel>() {
+class BestRecipesAdapter(
+    private val itemViewClickListener:(RecipeViewModel)->Unit
+):BaseAdapter<RecipeViewModel>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<RecipeViewModel> {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BaseViewHolder<RecipeViewModel> {
         return ViewHolder(parent.inflate(R.layout.item_list_best_recipe))
     }
 
-    inner class ViewHolder(view: View):BaseAdapter.BaseViewHolder<RecipeViewModel>(view){
+    inner class ViewHolder(view: View) : BaseAdapter.BaseViewHolder<RecipeViewModel>(view) {
 
-        init{
-            itemView.item_list_best_recipe_image.run {
-                val size = context.getScreenSize()
-                layoutParams.width = (size.x*0.8).toInt()
-                layoutParams.height = (size.y*0.25).toInt()
-                Log.d("BestRecipesAdapter","${layoutParams.width} ${layoutParams.height}")
-            }
+        init {
+            initSize()
+            initItemViewClickListener()
         }
 
         override fun bind(model: RecipeViewModel, position: Int) {
             itemView.run {
-                if(model.image.isNotEmpty()) {
-                    item_list_best_recipe_image.loadImg(model.image, R.color.color_placeholder)
-                }else{
-                    item_list_best_recipe_image.loadImg(R.drawable.placeholder, R.color.color_placeholder)
+                if (model.image.isNotEmpty()) {
+                    best_recipe_image.loadImg(model.image, R.color.color_placeholder)
+                } else {
+                    best_recipe_image.loadImg(
+                        R.drawable.placeholder,
+                        R.color.color_placeholder
+                    )
                 }
-                item_list_best_recipe_name.text = model.name
-                item_list_best_recipe_count_like.text = model.countLike
-                item_list_best_recipe_time.text = model.time
+                best_recipe_name.text = model.name
+                best_recipe_count_like.text = model.countLike
+                best_recipe_time.text = model.time
+            }
+        }
+
+        private fun initSize() {
+            itemView.best_recipe_image.run {
+                val size = context.getScreenSize()
+                layoutParams.width = (size.x * 0.9).toInt()
+                layoutParams.height = (size.y * 0.3).toInt()
+            }
+        }
+
+        private fun initItemViewClickListener() {
+            itemView.setOnClickListener {
+                itemViewClickListener.invoke(dataList[adapterPosition])
             }
         }
 
