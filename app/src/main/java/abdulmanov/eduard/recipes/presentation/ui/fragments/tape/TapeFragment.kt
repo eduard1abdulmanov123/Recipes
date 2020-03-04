@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.ui.fragments.recipes.tape
+package abdulmanov.eduard.recipes.presentation.ui.fragments.tape
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -44,18 +44,22 @@ class TapeFragment : Fragment() {
         val current = System.currentTimeMillis()
         val mapper:RecipesViewModelMapper = RecipesViewModelMapperImpl()
         tapeUseCase.execute()
-            .map(mapper::mapTapeToViewModel)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    val list = mutableListOf<IItem>()
-                    list.add(it.bestRecipes)
-                    list.addAll(it.recipesByCategory)
-                    (tape_category_with_recipes_recycler_view.adapter as CompositeDelegateAdapter<IItem>).swapData(list)
+                    it.bestRecipes.forEach {
+                        Log.d("TapeFragment",it.toString())
+                    }
+                    it.categories.forEach {
+                        Log.d("TapeFragment",it.toString())
+                    }
                 },
                 {
                     Log.d("TapeFragment","error = ${it.message.toString()}")
+                    it.stackTrace.forEach {
+                        Log.d("TapeFragment","error = ${it}")
+                    }
                 }
             )
     }

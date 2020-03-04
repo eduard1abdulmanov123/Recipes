@@ -40,7 +40,7 @@ class RecipesService {
                         id = it.getId(),
                         link = it.getLink(),
                         name = it.getTitle(),
-                        image = it.getImage(),
+                        image = it.getImage().replace("c285x285i","c500x350i"),
                         countIngredient = it.getCountIngredient(),
                         countPortion = it.getCountPortion(),
                         time = it.getTime(),
@@ -52,11 +52,10 @@ class RecipesService {
     }
 
     private fun Element.getId():Long{
-        return select("div.bookmark.js-tooltip.js-bookmark__label")
-            .attr("data-id")
-            .apply {
-                Log.d("RecipesService",this)
-            }
+        return select("div.horizontal-tile__item-link.js-click-link")[0]
+            .attr("data-href")
+            .split("-")
+            .last()
             .toLong()
     }
 

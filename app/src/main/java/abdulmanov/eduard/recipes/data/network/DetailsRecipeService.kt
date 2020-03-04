@@ -50,7 +50,7 @@ class DetailsRecipeService(
 
     private fun Document.getRecipeId():Long{
         return select("section.recipe.js-portions-count-parent.js-recipe")
-            .attr("data-recipe-id")
+            .attr("data-recipe-name")
             .toLong()
     }
 
@@ -115,7 +115,7 @@ class DetailsRecipeService(
             .children()
             .map {
                 val jsonObject = JSONObject(it.attr("data-ingredient-object"))
-                val ingredientId = jsonObject.getString("id").toLong()
+                val ingredientId = jsonObject.getString("name").toLong()
                 val name = jsonObject.getString("name")
                 Ingredient(ingredientId,name,portionsMap[ingredientId]!!)
             }

@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.ui.fragments.recipes.list
+package abdulmanov.eduard.recipes.presentation.ui.fragments.list
 
 import abdulmanov.eduard.recipes.domain.interactors.recipes.GetRecipesUseCase
 import abdulmanov.eduard.recipes.presentation.ui.base.ListState

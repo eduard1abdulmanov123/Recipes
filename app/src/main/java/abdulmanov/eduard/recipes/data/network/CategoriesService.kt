@@ -7,20 +7,28 @@ class CategoriesService {
 
     fun getCategories():List<Category>{
         return Jsoup.connect("https://eda.ru/").get().run {
-           select("div.tag-selector__selects-box")[0]
-                .child(0)
-                .select("ul.select-suggest__result.js-select-suggest__result")[0]
-                .children()
-                .run {
-                    subList(1,this.size)
-                }
-                .map {
-                    Category(
-                        it.html(),
-                        it.attr("data-select-suggest-value")
-                    )
-                }
+           select("section.seo-footer")
+               .select("li.seo-footer__list-title")
+               .map {element->
+                   Category(
+                       element.attr("href"),
+                       element.text().getName(),
+                       element.text().getCountRecipes()
+                   )
+               }
         }
     }
 
+    private fun String.getName():String{
+        var name = ""
+        forEach {
+            if(!it.isDigit())
+                name+=it
+        }
+        return name.trim()
+    }
+
+    private fun String.getCountRecipes():Long{
+        return split(" ").last().toLong()
+    }
 }

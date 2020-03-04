@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.ui.fragments.recipes.list
+package abdulmanov.eduard.recipes.presentation.ui.fragments.list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,7 +1,7 @@
 package abdulmanov.eduard.recipes.presentation.dagger.module
 
 import abdulmanov.eduard.recipes.presentation.ui.base.ViewModelFactory
-import abdulmanov.eduard.recipes.presentation.ui.fragments.recipes.list.RecipeListViewModel
+import abdulmanov.eduard.recipes.presentation.ui.fragments.list.RecipeListViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
