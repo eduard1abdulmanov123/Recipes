@@ -11,8 +11,8 @@ class CategoriesService {
                .select("li.seo-footer__list-title")
                .map {element->
                    Category(
-                       element.attr("href"),
                        element.text().getName(),
+                       element.child(0).attr("href").getValue(),
                        element.text().getCountRecipes()
                    )
                }
@@ -28,7 +28,13 @@ class CategoriesService {
         return name.trim()
     }
 
-    private fun String.getCountRecipes():Long{
-        return split(" ").last().toLong()
+    private fun String.getValue():String{
+        return split("/").run {
+            this[this.size-1]
+        }
+    }
+
+    private fun String.getCountRecipes():Int{
+        return split(" ").last().toInt()
     }
 }

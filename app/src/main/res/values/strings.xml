@@ -8,7 +8,15 @@
 
     <!--tape-->
     <string name="tape_title">Лента</string>
-    <string name="tape_best_recipes_of_the_day">Лучшие рецепты дня</string>
+    <string name="tape_best_recipes_of_the_day_title">Лучшие рецепты дня</string>
+    <string name="tape_categories_title">Категории</string>
     <string name="tape_more">Еще</string>
+
+    <plurals name="count_recipes">
+        <item quantity="one">%d рецепт</item>
+        <item quantity="few">%d рецепта</item>
+        <item quantity="many">%d рецептов</item>
+        <item quantity="other">%d рецептов</item>
+    </plurals>
 
 </resources>

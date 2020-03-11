@@ -137,7 +137,7 @@ class RecipeListFragment : Fragment() {
     }
 
     private fun initRefreshButton(){
-        error_refresh_button.setOnClickListener {
+        error_repeat_button.setOnClickListener {
             viewModel.refresh()
         }
     }
@@ -161,22 +161,22 @@ class RecipeListFragment : Fragment() {
             is ListState.EmptyErrorState->{
                 /*Задержка делается для того, чтобы избежать показа загрузки из SwipeRefresh
                 * после того, как мы перешли в состояние Data. Примерно 100мс убирается загрузка*/
-                error_refresh_progress_bar.visibilityGone(false)
+                error_repeat_progress_bar.visibilityGone(false)
                 layout_progress_bar.visibilityGone(false)
                 recipes_content.isRefreshing = false
                 recipes_content.postDelayed({
                     recipes_content.visibilityGone(false)
                     layout_error.visibilityGone(true)
-                    error_refresh_button.visibilityGone(true)
+                    error_repeat_button.visibilityGone(true)
                     error_secondary_message.setText(state.message)
                 },100)
             }
             is ListState.EmptyErrorStateRefresh->{
                 layout_progress_bar.visibilityGone(false)
                 recipes_content.visibilityGone(false)
-                error_refresh_button.visibilityGone(false)
+                error_repeat_button.visibilityGone(false)
                 layout_error.visibilityGone(true)
-                error_refresh_progress_bar.visibilityGone(true)
+                error_repeat_progress_bar.visibilityGone(true)
             }
             is ListState.DataState->{
                 Log.d("RecipeListFragment","isDateState")

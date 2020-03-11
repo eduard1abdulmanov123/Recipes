@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.dagger.module
+package abdulmanov.eduard.recipes.dagger.module
 
 import abdulmanov.eduard.recipes.presentation.ui.mapper.RecipesViewModelMapper
 import abdulmanov.eduard.recipes.presentation.ui.mapper.RecipesViewModelMapperImpl

@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.dagger.module
+package abdulmanov.eduard.recipes.dagger.module
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

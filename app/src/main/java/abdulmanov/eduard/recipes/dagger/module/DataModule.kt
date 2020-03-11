@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.dagger.module
+package abdulmanov.eduard.recipes.dagger.module
 
 import abdulmanov.eduard.recipes.data.network.CategoriesService
 import abdulmanov.eduard.recipes.data.network.DetailsRecipeService

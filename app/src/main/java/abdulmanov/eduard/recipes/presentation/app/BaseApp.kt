@@ -1,11 +1,10 @@
 package abdulmanov.eduard.recipes.presentation.app
 
-import abdulmanov.eduard.recipes.presentation.dagger.component.AppComponent
-import abdulmanov.eduard.recipes.presentation.dagger.component.DaggerAppComponent
+import abdulmanov.eduard.recipes.dagger.component.AppComponent
+import abdulmanov.eduard.recipes.dagger.component.DaggerAppComponent
 import android.app.Application
 import com.squareup.picasso.LruCache
 import com.squareup.picasso.Picasso
-import io.reactivex.plugins.RxJavaPlugins
 
 class BaseApp:Application() {
 

@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/error_main_message" />
 
     <TextView
-        android:id="@+id/error_refresh_button"
+        android:id="@+id/error_repeat_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/error_secondary_message" />
 
     <ProgressBar
-        android:id="@+id/error_refresh_progress_bar"
+        android:id="@+id/error_repeat_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

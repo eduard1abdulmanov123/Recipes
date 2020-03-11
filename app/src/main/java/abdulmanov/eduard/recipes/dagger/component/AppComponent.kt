@@ -1,8 +1,8 @@
-package abdulmanov.eduard.recipes.presentation.dagger.component
+package abdulmanov.eduard.recipes.dagger.component
 
-import abdulmanov.eduard.recipes.presentation.dagger.module.*
+import abdulmanov.eduard.recipes.dagger.module.*
 import abdulmanov.eduard.recipes.presentation.ui.fragments.list.RecipeListFragment
-import abdulmanov.eduard.recipes.presentation.ui.fragments.tape.TapeFragment
+import abdulmanov.eduard.recipes.presentation.ui.fragments.main.MainScreenFragment
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
@@ -19,5 +19,5 @@ interface AppComponent{
 
     fun inject(recipeListFragment: RecipeListFragment)
 
-    fun inject(tapeFragment: TapeFragment)
+    fun inject(mainScreenFragment: MainScreenFragment)
 }
