@@ -4,6 +4,7 @@ import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.ui.fragments.main.MainScreenFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,5 +25,14 @@ class MainActivity : AppCompatActivity() {
                 )
             }.commit()
         }
+    }
+
+    fun startFragment(fragment: Fragment){
+        supportFragmentManager.beginTransaction().apply {
+            replace(
+                R.id.main_container_id,
+                fragment
+            )
+        }.commit()
     }
 }

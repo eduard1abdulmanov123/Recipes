@@ -7,10 +7,13 @@ import android.view.View
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
 import abdulmanov.eduard.recipes.presentation.common.visibilityGone
+import abdulmanov.eduard.recipes.presentation.ui.activities.MainActivity
 import abdulmanov.eduard.recipes.presentation.ui.adapters.*
 import abdulmanov.eduard.recipes.presentation.ui.base.*
+import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryScreenFragment
 import abdulmanov.eduard.recipes.presentation.ui.model.TapeViewModel
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -75,7 +78,7 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
             addItemDecoration(GridItemDecoration(6, 6, context))
             layoutManager = GridLayoutManager(context, 2)
             adapter = CategoriesAdapter{
-
+                (activity as MainActivity).startFragment(CategoryScreenFragment.newInstance(it.value))
             }
         }
     }
