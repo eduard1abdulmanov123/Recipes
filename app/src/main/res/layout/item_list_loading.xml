@@ -11,7 +11,7 @@
         android:layout_gravity="center"/>
 
     <TextView
-        android:id="@+id/item_list_loading_refresh"
+        android:id="@+id/item_list_loading_repeat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

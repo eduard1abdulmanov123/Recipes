@@ -5,7 +5,6 @@ import abdulmanov.eduard.recipes.presentation.ui.base.ListState
 import abdulmanov.eduard.recipes.presentation.ui.base.BaseViewModel
 import abdulmanov.eduard.recipes.presentation.ui.mapper.RecipesViewModelMapper
 import abdulmanov.eduard.recipes.presentation.ui.model.LoadingViewModel
-import abdulmanov.eduard.recipes.presentation.ui.model.LoadingViewModelState
 import abdulmanov.eduard.recipes.presentation.ui.model.RecipeViewModel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -35,7 +34,7 @@ class RecipeListViewModel @Inject constructor(
     fun loadNewPage(){
         state.postValue(ListState.PageProgressState)
         data.postValue(addLoadingViewModel())
-        getRecipes(
+        /*getRecipes(
             {
                 if(it.isNotEmpty()) {
                     currentPage++
@@ -47,14 +46,14 @@ class RecipeListViewModel @Inject constructor(
                 }
             },
             {
-                data.postValue(changeStateLoadingViewModel(LoadingViewModelState.Refresh))
+                data.postValue(changeStateLoadingViewModel(LoadingViewModel.Refresh))
                 state.postValue(ListState.PageErrorState)
             }
-        )
+        )*/
     }
 
     fun refresh(){
-        when(state.value){
+       /* when(state.value){
             is ListState.EmptyErrorState->{
                 state.postValue(ListState.EmptyErrorStateRefresh)
                 getRecipes(
@@ -69,7 +68,7 @@ class RecipeListViewModel @Inject constructor(
                 )
             }
             is ListState.PageErrorState->{
-                data.postValue(changeStateLoadingViewModel(LoadingViewModelState.Loading))
+                data.postValue(changeStateLoadingViewModel(LoadingViewModel.Loading))
                 state.postValue(ListState.PageProgressState)
                 getRecipes(
                     {
@@ -78,12 +77,12 @@ class RecipeListViewModel @Inject constructor(
                         state.postValue(ListState.DataState)
                     },
                     {
-                        data.postValue(changeStateLoadingViewModel(LoadingViewModelState.Refresh))
+                        data.postValue(changeStateLoadingViewModel(LoadingViewModel.Refresh))
                         state.postValue(ListState.PageErrorState)
                     }
                 )
             }
-        }
+        }*/
     }
 
     fun restart(){
@@ -146,8 +145,8 @@ class RecipeListViewModel @Inject constructor(
         return data.value!!.minus(data.value!!.last())
     }
 
-    private fun changeStateLoadingViewModel(state:LoadingViewModelState):List<IComparableItem>{
+    /*private fun changeStateLoadingViewModel(state:LoadingViewModel):List<IComparableItem>{
         val newLoadingViewModel = (data.value!!.last() as LoadingViewModel).copy(state = state)
         return data.value!!.minus(data.value!!.last()).plus(newLoadingViewModel)
-    }
+    }*/
 }

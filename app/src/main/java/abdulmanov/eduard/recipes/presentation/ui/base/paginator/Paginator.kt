@@ -1,5 +1,6 @@
 package abdulmanov.eduard.recipes.presentation.ui.base.paginator
 
+import android.util.Log
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -42,6 +43,9 @@ class Paginator<E,VM>(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
+                    it.forEach{
+                        Log.d("paginator",it.toString())
+                    }
                     if (swap)
                         data.clear()
                     data.addAll(it)
@@ -112,6 +116,38 @@ class Paginator<E,VM>(
 
     inner class StartEmptyState : State<VM>
 
-    inner class DataState(val data: List<VM>) : State<VM>
+    inner class DataState(val data: List<VM>) : State<VM>{
+        override fun loadNewPage() {
+            currentState = PaginationProgressState(data)
+            loadPage(currentPage + 1)
+        }
+    }
+
+    inner class PaginationProgressState(val data:List<VM>):State<VM>{
+
+        override fun newData(data: List<VM>) {
+            if(data.isEmpty()){
+                currentState = AllData()
+            }else{
+                currentState = DataState(data)
+                currentPage++
+            }
+        }
+
+        override fun fail(error: Throwable) {
+            currentState = PaginationErrorState(error,data)
+        }
+    }
+
+    inner class PaginationErrorState(val error:Throwable, val data:List<VM>):State<VM>{
+
+        override fun refresh() {
+            currentState = PaginationProgressState(data)
+            loadPage(currentPage+1)
+        }
+
+    }
+
+    inner class AllData:State<VM>
 
 }

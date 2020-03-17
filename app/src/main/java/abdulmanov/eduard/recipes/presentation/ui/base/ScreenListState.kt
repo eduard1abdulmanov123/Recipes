@@ -11,4 +11,10 @@ sealed class ScreenListState {
     object StartEmptyState : ScreenListState()
     //Состояние, когда данные были получены и они не пустые
     class DataState<T>(val data: List<T>) : ScreenListState()
+
+    class PaginationProgressState<T>(val data:List<T>):ScreenListState()
+
+    class PaginationErrorState<T>(val message:Int,val data:List<T>):ScreenListState()
+
+    object AllDataState:ScreenListState()
 }

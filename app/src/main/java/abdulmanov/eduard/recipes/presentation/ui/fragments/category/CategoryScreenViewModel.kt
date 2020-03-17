@@ -1,76 +1,65 @@
 package abdulmanov.eduard.recipes.presentation.ui.fragments.category
 
 import abdulmanov.eduard.recipes.domain.interactors.recipes.GetRecipesUseCase
-import abdulmanov.eduard.recipes.domain.models.Recipe
-import abdulmanov.eduard.recipes.presentation.common.handleError
-import abdulmanov.eduard.recipes.presentation.ui.base.ScreenListState
-import abdulmanov.eduard.recipes.presentation.ui.base.paginator.Controller
-import abdulmanov.eduard.recipes.presentation.ui.base.paginator.Paginator
-import abdulmanov.eduard.recipes.presentation.ui.base.paginator.State
+import abdulmanov.eduard.recipes.presentation.ui.base.BaseViewModel
+import abdulmanov.eduard.recipes.presentation.ui.base.Event
+import abdulmanov.eduard.recipes.presentation.ui.base.Paginator
 import abdulmanov.eduard.recipes.presentation.ui.mapper.RecipesViewModelMapper
 import abdulmanov.eduard.recipes.presentation.ui.model.RecipeViewModel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import io.reactivex.Single
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class CategoryScreenViewModel @Inject constructor(
     private val getRecipesUseCase: GetRecipesUseCase,
     private val mapper:RecipesViewModelMapper
-):ViewModel(), Controller<RecipeViewModel>{
+):BaseViewModel(){
 
-    companion object{
-        private const val FIRST_PAGE = 1
-    }
-
+    val paginator = Paginator.Store<RecipeViewModel>()
     var category:String = ""
 
-    private val paginator =
-        Paginator(
-            this::getRecipes,
-            mapper::mapRecipesToViewModels,
-            this
-        )
-
-    private val _state =  MutableLiveData<ScreenListState>()
-    val state:LiveData<ScreenListState>
+    private val _state =  MutableLiveData<Paginator.State>()
+    val state:LiveData<Paginator.State>
         get() = _state
 
+    private val _message = MutableLiveData<Event<Throwable>>()
+    val message:LiveData<Event<Throwable>>
+        get() = _message
+
+    private var sideEffectDisposable:Disposable? = null
+
+    init {
+        paginator.render = {_state.postValue(it)}
+        sideEffectDisposable = paginator.sideEffects.subscribe{
+            when(it){
+                is Paginator.SideEffect.LoadPage -> loadNewPage(it.currentPage)
+                is Paginator.SideEffect.ErrorEvent -> _message.postValue(Event(it.error))
+            }
+        }
+    }
 
     override fun onCleared() {
-        paginator.release()
+        super.onCleared()
+        sideEffectDisposable?.dispose()
     }
 
-    override fun changeState(newState: State<RecipeViewModel>) {
-        Log.d("CategoryScreen",newState.toString())
-        _state.postValue(
-            when(newState){
-                is Paginator<*,*>.StartProgressState -> ScreenListState.StartProgressState
-                is Paginator<*,*>.StartErrorState -> ScreenListState.StartErrorState(newState.error.handleError())
-                is Paginator<*,*>.StartProgressAfterErrorState -> ScreenListState.StartProgressAfterErrorState
-                is Paginator<*,*>.StartEmptyState -> ScreenListState.StartEmptyState
-                is Paginator<*,*>.DataState -> ScreenListState.DataState(newState.data)
-                else -> null
-            }
-        )
-    }
+    fun refresh() = paginator.proceed(Paginator.Action.Refresh)
 
-    override fun showMessage(message: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    fun loadNextPage()  = paginator.proceed(Paginator.Action.LoadMore)
 
-    fun refresh(){
-        paginator.refresh()
+    private fun loadNewPage(page:Int){
+        disposable.clear()
+        getRecipesUseCase.execute(category,page)
+            .map(mapper::mapRecipesToViewModels)
+            .safeSubscribe(
+                {
+                    paginator.proceed(Paginator.Action.NewPage(page,it))
+                },
+                {
+                    paginator.proceed(Paginator.Action.PageError(it))
+                }
+            )
     }
-
-    fun loadNewPage(){
-        paginator.loadNewPage()
-    }
-
-    private fun getRecipes(page:Int): Single<List<Recipe>>{
-        return getRecipesUseCase.execute(category, page)
-    }
-
 }

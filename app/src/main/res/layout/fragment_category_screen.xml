@@ -22,13 +22,14 @@
         android:layout_height="match_parent"
         android:layout_below="@id/category_app_bar_layout">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/category_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:clipToPadding="false"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:clipToPadding="false"/>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <include

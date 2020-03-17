@@ -156,7 +156,7 @@ class RecipeListFragment : Fragment() {
                 layout_progress_bar.visibilityGone(!state.swipeRefresh)
                 recipes_content.visibilityGone(state.swipeRefresh)
                 layout_error.visibilityGone(false)
-                scrollListener.setStartState()
+
             }
             is ListState.EmptyErrorState->{
                 /*Задержка делается для того, чтобы избежать показа загрузки из SwipeRefresh

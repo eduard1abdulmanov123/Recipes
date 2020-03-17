@@ -14,7 +14,7 @@ abstract class BaseViewModel: ViewModel() {
         private const val NETWORK_ERROR = "Unable to resolve host \"eda.ru\": No address associated with hostname"
     }
 
-    private val disposable = CompositeDisposable()
+    val disposable = CompositeDisposable()
 
     protected fun <T> Single<T>.safeSubscribe(
         onSuccess: (T) -> Unit,

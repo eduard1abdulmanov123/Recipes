@@ -3,7 +3,6 @@ package abdulmanov.eduard.recipes.presentation.ui.adapters
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.common.visibilityGone
 import abdulmanov.eduard.recipes.presentation.ui.model.LoadingViewModel
-import abdulmanov.eduard.recipes.presentation.ui.model.LoadingViewModelState
 import android.util.Log
 import com.example.delegateadapter.delegate.KDelegateAdapter
 import kotlinx.android.synthetic.main.item_list_loading.*
@@ -21,11 +20,11 @@ class LoadingDelegateAdapter (
     override fun onBind(item: LoadingViewModel, viewHolder: KViewHolder) {
         Log.d("LoadingDelegateAdapter","bind = ${item.state}")
         viewHolder.run {
-            item_list_loading_refresh.setOnClickListener {
+            item_list_loading_repeat.setOnClickListener {
                refreshClickListener.invoke()
             }
-            item_list_loading_progress_bar.visibilityGone(item.state == LoadingViewModelState.Loading)
-            item_list_loading_refresh.visibilityGone(item.state == LoadingViewModelState.Refresh)
+            item_list_loading_progress_bar.visibilityGone(item.state == LoadingViewModel.LoadingViewModelState.Loading)
+            item_list_loading_repeat.visibilityGone(item.state == LoadingViewModel.LoadingViewModelState.Error)
         }
     }
 }
