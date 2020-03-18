@@ -2,7 +2,6 @@ package abdulmanov.eduard.recipes.dagger.component
 
 import abdulmanov.eduard.recipes.dagger.module.*
 import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryScreenFragment
-import abdulmanov.eduard.recipes.presentation.ui.fragments.list.RecipeListFragment
 import abdulmanov.eduard.recipes.presentation.ui.fragments.main.MainScreenFragment
 import android.content.Context
 import dagger.BindsInstance
@@ -17,8 +16,6 @@ interface AppComponent{
     interface Factory {
         fun create(@BindsInstance context: Context): AppComponent
     }
-
-    fun inject(recipeListFragment: RecipeListFragment)
 
     fun inject(mainScreenFragment: MainScreenFragment)
 

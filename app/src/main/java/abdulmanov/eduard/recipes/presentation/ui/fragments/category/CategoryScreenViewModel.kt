@@ -6,10 +6,12 @@ import abdulmanov.eduard.recipes.presentation.ui.base.Event
 import abdulmanov.eduard.recipes.presentation.ui.base.Paginator
 import abdulmanov.eduard.recipes.presentation.ui.mapper.RecipesViewModelMapper
 import abdulmanov.eduard.recipes.presentation.ui.model.RecipeViewModel
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class CategoryScreenViewModel @Inject constructor(
@@ -28,32 +30,31 @@ class CategoryScreenViewModel @Inject constructor(
     val message:LiveData<Event<Throwable>>
         get() = _message
 
-    private var sideEffectDisposable:Disposable? = null
+    private var pageDisposable: Disposable? = null
 
     init {
         paginator.render = {_state.postValue(it)}
-        sideEffectDisposable = paginator.sideEffects.subscribe{
+        paginator.sideEffects.subscribe{
             when(it){
                 is Paginator.SideEffect.LoadPage -> loadNewPage(it.currentPage)
                 is Paginator.SideEffect.ErrorEvent -> _message.postValue(Event(it.error))
             }
-        }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        sideEffectDisposable?.dispose()
+        }.connect()
     }
 
     fun refresh() = paginator.proceed(Paginator.Action.Refresh)
 
+    fun repeat() = paginator.proceed(Paginator.Action.Repeat)
+
     fun loadNextPage()  = paginator.proceed(Paginator.Action.LoadMore)
 
     private fun loadNewPage(page:Int){
-        disposable.clear()
-        getRecipesUseCase.execute(category,page)
+        pageDisposable?.dispose()
+        pageDisposable = getRecipesUseCase.execute(category,page)
             .map(mapper::mapRecipesToViewModels)
-            .safeSubscribe(
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
                 {
                     paginator.proceed(Paginator.Action.NewPage(page,it))
                 },
@@ -61,5 +62,6 @@ class CategoryScreenViewModel @Inject constructor(
                     paginator.proceed(Paginator.Action.PageError(it))
                 }
             )
+        pageDisposable?.connect()
     }
 }

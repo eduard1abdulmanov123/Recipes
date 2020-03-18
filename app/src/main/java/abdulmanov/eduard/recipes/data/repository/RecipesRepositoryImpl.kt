@@ -23,7 +23,7 @@ class RecipesRepositoryImpl(
 
     override fun getRecipes(category: String, page: Int): Single<List<Recipe>> {
         return Single.create<List<Recipe>>{
-            it.onSuccess(recipesService.getRecipes(category,page))
+            it.onSuccess(recipesService.getRecipes(category, page))
         }
     }
 

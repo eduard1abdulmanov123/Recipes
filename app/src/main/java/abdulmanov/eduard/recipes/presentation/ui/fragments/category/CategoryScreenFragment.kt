@@ -104,7 +104,7 @@ class CategoryScreenFragment : Fragment(R.layout.fragment_category_screen) {
             adapter = DiffUtilCompositeAdapter.Builder()
                 .add(RecipesDelegateAdapter{})
                 .add(LoadingDelegateAdapter{
-                    viewModel.refresh()
+                    viewModel.repeat()
                 })
                 .build()
         }
@@ -112,7 +112,7 @@ class CategoryScreenFragment : Fragment(R.layout.fragment_category_screen) {
 
     private fun initErrorRepeatButton(){
         error_repeat_button.setOnClickListener {
-            viewModel.refresh()
+            viewModel.repeat()
         }
     }
 
@@ -149,7 +149,7 @@ class CategoryScreenFragment : Fragment(R.layout.fragment_category_screen) {
                 error_secondary_message.setText(state.error.handleError())
             }
             is Paginator.State.Data<*> -> {
-                scrollListener.state = LinearInfiniteScrollListener.ScrollState.Normal
+                scrollListener.state = LinearInfiniteScrollListener.PaginationState.Allow
                 category_content_swipe_refresh.isRefreshing = false
                 layout_error.visibilityGone(false)
                 layout_progress_bar.visibilityGone(false)
@@ -157,7 +157,7 @@ class CategoryScreenFragment : Fragment(R.layout.fragment_category_screen) {
                 (category_recycler_view.adapter as DiffUtilCompositeAdapter).swapData(state.data as List<IComparableItem>)
             }
             is Paginator.State.NewPageProgress<*> -> {
-                scrollListener.state = LinearInfiniteScrollListener.ScrollState.Loading
+                scrollListener.state = LinearInfiniteScrollListener.PaginationState.Ban
                 category_content_swipe_refresh.isRefreshing = false
                 layout_error.visibilityGone(false)
                 layout_progress_bar.visibilityGone(false)
@@ -166,7 +166,7 @@ class CategoryScreenFragment : Fragment(R.layout.fragment_category_screen) {
                 (category_recycler_view.adapter as DiffUtilCompositeAdapter).swapData((state.data as List<IComparableItem> + loadingItem as IComparableItem))
             }
             is Paginator.State.NewPageError<*> -> {
-                scrollListener.state = LinearInfiniteScrollListener.ScrollState.Loading
+                scrollListener.state = LinearInfiniteScrollListener.PaginationState.Ban
                 category_content_swipe_refresh.isRefreshing = false
                 layout_error.visibilityGone(false)
                 layout_progress_bar.visibilityGone(false)
@@ -175,12 +175,28 @@ class CategoryScreenFragment : Fragment(R.layout.fragment_category_screen) {
                 (category_recycler_view.adapter as DiffUtilCompositeAdapter).swapData((state.data as List<IComparableItem> + loadingItem as IComparableItem))
             }
             is Paginator.State.FullData<*> -> {
-                scrollListener.state = LinearInfiniteScrollListener.ScrollState.Full
+                scrollListener.state = LinearInfiniteScrollListener.PaginationState.Ban
                 category_content_swipe_refresh.isRefreshing = false
                 layout_error.visibilityGone(false)
                 layout_progress_bar.visibilityGone(false)
                 category_content_swipe_refresh.visibilityGone(true)
                 (category_recycler_view.adapter as DiffUtilCompositeAdapter).swapData((state.data as List<IComparableItem>))
+            }
+            is Paginator.State.Refresh<*> -> {
+                scrollListener.state = LinearInfiniteScrollListener.PaginationState.Allow
+                category_content_swipe_refresh.isRefreshing = true
+                layout_error.visibilityGone(false)
+                layout_progress_bar.visibilityGone(false)
+                category_content_swipe_refresh.visibilityGone(true)
+                (category_recycler_view.adapter as DiffUtilCompositeAdapter).swapData(state.data as List<IComparableItem>)
+            }
+            is Paginator.State.RefreshAfterFullData<*> -> {
+                scrollListener.state = LinearInfiniteScrollListener.PaginationState.Allow
+                category_content_swipe_refresh.isRefreshing = true
+                layout_error.visibilityGone(false)
+                layout_progress_bar.visibilityGone(false)
+                category_content_swipe_refresh.visibilityGone(true)
+                (category_recycler_view.adapter as DiffUtilCompositeAdapter).swapData(state.data as List<IComparableItem>)
             }
         }
     }

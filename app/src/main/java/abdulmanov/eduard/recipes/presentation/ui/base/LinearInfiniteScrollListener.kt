@@ -1,6 +1,5 @@
 package abdulmanov.eduard.recipes.presentation.ui.base
 
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -13,7 +12,7 @@ open class LinearInfiniteScrollListener(
     private var firstVisibleItem = 0
     private var visibleItemCount = 0
     private var totalItemCount = 0
-    var state: ScrollState = ScrollState.Normal
+    var state: PaginationState = PaginationState.Allow
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
@@ -22,17 +21,15 @@ open class LinearInfiniteScrollListener(
             totalItemCount = layoutManager.itemCount
             firstVisibleItem = layoutManager.findFirstVisibleItemPosition()
 
-            if (state == ScrollState.Normal && state != ScrollState.Full && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
-                state = ScrollState.Loading
+            if (state == PaginationState.Allow && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
                 recyclerView.post(funcEnd)
             }
         }
     }
 
-    sealed class ScrollState {
-        object Normal : ScrollState()
-        object Loading : ScrollState()
-        object Full : ScrollState()
+    sealed class PaginationState {
+        object Allow : PaginationState()
+        object Ban : PaginationState()
     }
 
 }
