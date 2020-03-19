@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.item_list_recipe.*
 
 class RecipesDelegateAdapter (
     private val itemViewClickListener:(RecipeViewModel)->Unit
-) : KDelegateAdapter<RecipeViewModel>(){
+) : KDelegateAdapter<RecipeViewModel>() {
 
     override fun getLayoutId() = R.layout.item_list_recipe
 
@@ -19,9 +19,9 @@ class RecipesDelegateAdapter (
     override fun onBind(item: RecipeViewModel, viewHolder: KViewHolder) {
         viewHolder.run {
             itemView.setOnClickListener { itemViewClickListener.invoke(item) }
-            if(item.image.isNotEmpty()) {
+            if (item.image.isNotEmpty()) {
                 item_list_recipe_image.loadImg(item.image, R.color.color_placeholder)
-            }else{
+            } else {
                 item_list_recipe_image.loadImg(R.drawable.placeholder, R.color.color_placeholder)
             }
             item_list_recipe_name.text = item.name

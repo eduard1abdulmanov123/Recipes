@@ -18,7 +18,6 @@ class LoadingDelegateAdapter (
     }
 
     override fun onBind(item: LoadingViewModel, viewHolder: KViewHolder) {
-        Log.d("LoadingDelegateAdapter","bind = ${item.state}")
         viewHolder.run {
             item_list_loading_repeat.setOnClickListener {
                refreshClickListener.invoke()

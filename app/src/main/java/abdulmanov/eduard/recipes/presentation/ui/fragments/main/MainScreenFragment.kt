@@ -78,7 +78,7 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
             addItemDecoration(GridItemDecoration(6, 6, context))
             layoutManager = GridLayoutManager(context, 2)
             adapter = CategoriesAdapter{
-                (activity as MainActivity).startFragment(CategoryScreenFragment.newInstance(it.value))
+                (activity as MainActivity).startFragment(CategoryScreenFragment.newInstance(it))
             }
         }
     }

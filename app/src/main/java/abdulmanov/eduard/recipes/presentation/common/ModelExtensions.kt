@@ -7,6 +7,6 @@ fun Throwable.handleError():Int{
     if(message.toString() == "Unable to resolve host \"eda.ru\": No address associated with hostname"){
         return R.string.error_network
     }else{
-        throw Exception("This error was not expected to be sorted out")
+        throw Exception("This error was not expected to be sorted out = ${message.toString()}")
     }
 }

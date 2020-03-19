@@ -38,16 +38,13 @@ class MainScreenViewModel @Inject constructor(
     private fun getTape(){
         getTapeUseCase.execute()
             .map(mapper::mapTapeToViewModels)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
+            .safeSubscribe(
                 {
                     _state.postValue(ScreenState.DataState(it))
                 },
                 {
-                    _state.postValue(ScreenState.ErrorState(it.handleError()))
+                    _state.postValue(ScreenState.DataState(it))
                 }
             )
-            .connect()
     }
 }
