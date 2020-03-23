@@ -5,7 +5,7 @@ import androidx.annotation.DrawableRes
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class CategoryViewModel(
+data class CategoryVM(
     @DrawableRes
     val image:Int,
     val name:String,

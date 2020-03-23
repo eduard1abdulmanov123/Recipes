@@ -2,21 +2,21 @@ package abdulmanov.eduard.recipes.presentation.ui.adapters
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.common.loadImg
-import abdulmanov.eduard.recipes.presentation.ui.model.RecipeViewModel
+import abdulmanov.eduard.recipes.presentation.ui.model.RecipeVM
 import com.example.delegateadapter.delegate.KDelegateAdapter
 import kotlinx.android.synthetic.main.item_list_recipe.*
 
 class RecipesDelegateAdapter (
-    private val itemViewClickListener:(RecipeViewModel)->Unit
-) : KDelegateAdapter<RecipeViewModel>() {
+    private val itemViewClickListener:(RecipeVM)->Unit
+) : KDelegateAdapter<RecipeVM>() {
 
     override fun getLayoutId() = R.layout.item_list_recipe
 
     override fun isForViewType(items: MutableList<*>, position: Int): Boolean {
-        return items[position] is RecipeViewModel
+        return items[position] is RecipeVM
     }
 
-    override fun onBind(item: RecipeViewModel, viewHolder: KViewHolder) {
+    override fun onBind(item: RecipeVM, viewHolder: KViewHolder) {
         viewHolder.run {
             itemView.setOnClickListener { itemViewClickListener.invoke(item) }
             if (item.image.isNotEmpty()) {

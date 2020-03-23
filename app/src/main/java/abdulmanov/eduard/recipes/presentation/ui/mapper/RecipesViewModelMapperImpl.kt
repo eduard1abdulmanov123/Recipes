@@ -14,9 +14,9 @@ class RecipesViewModelMapperImpl @Inject constructor(
     private val context:Context
 ):RecipesViewModelMapper {
 
-    override fun mapRecipesToViewModels(recipes: List<Recipe>): List<RecipeViewModel> {
+    override fun mapRecipesToViewModels(recipes: List<Recipe>): List<RecipeVM> {
         return recipes.map {
-            RecipeViewModel(
+            RecipeVM(
                 it.id,
                 it.name,
                 it.image,
@@ -29,16 +29,16 @@ class RecipesViewModelMapperImpl @Inject constructor(
         }
     }
 
-    override fun mapTapeToViewModels(tape: Tape): TapeViewModel {
-        return TapeViewModel(
+    override fun mapTapeToViewModels(tape: Tape): TapeVM {
+        return TapeVM(
             bestRecipes = mapRecipesToViewModels(tape.bestRecipes),
             categories = mapCategoriesToViewModels(tape.categories)
         )
     }
 
-    private fun mapCategoriesToViewModels(categories:List<Category>):List<CategoryViewModel>{
+    private fun mapCategoriesToViewModels(categories:List<Category>):List<CategoryVM>{
         return categories.map {
-            CategoryViewModel(
+            CategoryVM(
                 image = it.getDrawable(),
                 name = it.name,
                 value = it.value,

@@ -4,30 +4,30 @@ import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.common.getScreenSize
 import abdulmanov.eduard.recipes.presentation.common.inflate
 import abdulmanov.eduard.recipes.presentation.common.loadImg
-import abdulmanov.eduard.recipes.presentation.ui.model.RecipeViewModel
+import abdulmanov.eduard.recipes.presentation.ui.model.RecipeVM
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_best_recipe.view.*
 
 class BestRecipesAdapter(
-    private val itemViewClickListener:(RecipeViewModel)->Unit
-):BaseAdapter<RecipeViewModel>() {
+    private val itemViewClickListener:(RecipeVM)->Unit
+):BaseAdapter<RecipeVM>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BaseViewHolder<RecipeViewModel> {
+    ): BaseViewHolder<RecipeVM> {
         return ViewHolder(parent.inflate(R.layout.item_list_best_recipe))
     }
 
-    inner class ViewHolder(view: View) : BaseAdapter.BaseViewHolder<RecipeViewModel>(view) {
+    inner class ViewHolder(view: View) : BaseAdapter.BaseViewHolder<RecipeVM>(view) {
 
         init {
             initSize()
             initItemViewClickListener()
         }
 
-        override fun bind(model: RecipeViewModel, position: Int) {
+        override fun bind(model: RecipeVM, position: Int) {
             itemView.run {
                 if (model.image.isNotEmpty()) {
                     best_recipe_image.loadImg(model.image, R.color.color_placeholder)

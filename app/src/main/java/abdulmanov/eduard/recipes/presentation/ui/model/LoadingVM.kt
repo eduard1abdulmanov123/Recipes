@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.delegateadapter.delegate.diff.IComparableItem
 
 
-data class LoadingViewModel(
+data class LoadingVM(
     val id:Int = -1,
     var state:LoadingViewModelState = LoadingViewModelState.Loading
 ):IComparableItem{

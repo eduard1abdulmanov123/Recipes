@@ -4,30 +4,29 @@ import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.common.getScreenSize
 import abdulmanov.eduard.recipes.presentation.common.inflate
 import abdulmanov.eduard.recipes.presentation.common.loadImg
-import abdulmanov.eduard.recipes.presentation.ui.model.CategoryViewModel
+import abdulmanov.eduard.recipes.presentation.ui.model.CategoryVM
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_category.view.*
 
 class CategoriesAdapter(
-    private val itemViewClickListener:(CategoryViewModel) -> Unit
-) : BaseAdapter<CategoryViewModel>(){
+    private val itemViewClickListener:(CategoryVM) -> Unit?
+) : BaseAdapter<CategoryVM>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BaseViewHolder<CategoryViewModel> {
+    ): BaseViewHolder<CategoryVM> {
         return ViewHolder(parent.inflate(R.layout.item_list_category))
     }
 
-    inner class ViewHolder(view: View):BaseAdapter.BaseViewHolder<CategoryViewModel>(view){
-
+    inner class ViewHolder(view: View) : BaseAdapter.BaseViewHolder<CategoryVM>(view) {
         init {
             initSize()
             initItemViewClickListener()
         }
 
-        override fun bind(model: CategoryViewModel, position: Int) {
+        override fun bind(model: CategoryVM, position: Int) {
             itemView.run {
                 item_list_category_image.loadImg(model.image)
                 item_list_category_name.text = model.name
@@ -48,6 +47,5 @@ class CategoriesAdapter(
                 itemViewClickListener.invoke(dataList[adapterPosition])
             }
         }
-
     }
 }

@@ -3,7 +3,7 @@ package abdulmanov.eduard.recipes.presentation.ui.model
 
 import com.example.delegateadapter.delegate.diff.IComparableItem
 
-data class RecipeViewModel(
+data class RecipeVM(
     val id:Long,
     val name:String,
     val image:String,

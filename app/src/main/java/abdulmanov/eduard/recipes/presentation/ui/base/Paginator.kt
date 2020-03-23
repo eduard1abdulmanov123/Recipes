@@ -1,8 +1,10 @@
 package abdulmanov.eduard.recipes.presentation.ui.base
 
+import android.util.AndroidException
 import android.util.Log
 import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 object Paginator {
 
@@ -134,7 +136,10 @@ object Paginator {
             }
 
         private val sideEffectRelay = PublishRelay.create<SideEffect>()
-        val sideEffects: Observable<SideEffect> = sideEffectRelay.hide()
+        val sideEffects: Observable<SideEffect> =
+            sideEffectRelay
+                .hide()
+                .observeOn(AndroidSchedulers.mainThread())
 
         fun proceed(action: Action) {
             val newState = reducer<T>(action, state) { sideEffect ->

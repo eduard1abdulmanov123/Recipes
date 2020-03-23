@@ -20,7 +20,7 @@ class BaseApp:Application() {
     override fun onCreate() {
         super.onCreate()
         initPicasso()
-        RxJavaPlugins.setErrorHandler { }
+        //RxJavaPlugins.setErrorHandler { }
     }
 
     private fun initPicasso() {

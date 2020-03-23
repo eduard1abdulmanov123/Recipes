@@ -1,8 +1,8 @@
 package abdulmanov.eduard.recipes.dagger.module
 
 import abdulmanov.eduard.recipes.presentation.ui.base.ViewModelFactory
-import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryScreenViewModel
-import abdulmanov.eduard.recipes.presentation.ui.fragments.main.MainScreenViewModel
+import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryViewModel
+import abdulmanov.eduard.recipes.presentation.ui.fragments.tape.TapeViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
@@ -14,13 +14,13 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainScreenViewModel::class)
-    abstract fun bindMainScreenViewModel(mainScreenViewModel: MainScreenViewModel):ViewModel
+    @ViewModelKey(TapeViewModel::class)
+    abstract fun bindMainScreenViewModel(tapeViewModel: TapeViewModel):ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(CategoryScreenViewModel::class)
-    abstract fun bindCategoryScreenViewModel(categoryScreenViewModel: CategoryScreenViewModel):ViewModel
+    @ViewModelKey(CategoryViewModel::class)
+    abstract fun bindCategoryScreenViewModel(categoryViewModel: CategoryViewModel):ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
