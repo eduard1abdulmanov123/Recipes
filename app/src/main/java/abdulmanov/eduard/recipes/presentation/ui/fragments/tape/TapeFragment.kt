@@ -1,25 +1,26 @@
 package abdulmanov.eduard.recipes.presentation.ui.fragments.tape
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.View
-
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
 import abdulmanov.eduard.recipes.presentation.common.visibilityGone
 import abdulmanov.eduard.recipes.presentation.navigation.BackButtonListener
 import abdulmanov.eduard.recipes.presentation.navigation.RouterProvide
-import abdulmanov.eduard.recipes.presentation.ui.adapters.*
-import abdulmanov.eduard.recipes.presentation.ui.base.*
+import abdulmanov.eduard.recipes.presentation.ui.adapters.BestRecipesAdapter
+import abdulmanov.eduard.recipes.presentation.ui.adapters.CategoriesAdapter
+import abdulmanov.eduard.recipes.presentation.ui.base.GridItemDecoration
+import abdulmanov.eduard.recipes.presentation.ui.base.HorizontalItemDecoration
+import abdulmanov.eduard.recipes.presentation.ui.base.ScreenState
+import abdulmanov.eduard.recipes.presentation.ui.base.ViewModelFactory
 import abdulmanov.eduard.recipes.presentation.ui.model.TapeVM
 import android.content.Context
-import android.util.Log
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_tape.*
-import kotlinx.android.synthetic.main.fragment_tape.main_screen_toolbar
 import kotlinx.android.synthetic.main.layout_error.*
 import kotlinx.android.synthetic.main.layout_progress_bar.*
 import javax.inject.Inject

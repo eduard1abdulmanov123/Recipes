@@ -7,12 +7,11 @@ import io.reactivex.Single
 
 interface RecipesRepository {
 
-    fun getCategories():Single<List<Category>>
+    fun getCategories(): Single<List<Category>>
 
-    fun getRecipes(category:String,page:Int): Single<List<Recipe>>
+    fun getRecipes(category: String, page: Int): Single<List<Recipe>>
 
-    fun getBestRecipesOfTheDay():Single<List<Recipe>>
+    fun getBestRecipesOfTheDay(): Single<List<Recipe>>
 
-    fun getDetailsRecipe(id:String):Single<DetailsRecipe>
-
+    fun getDetailsRecipe(id: String): Single<DetailsRecipe>
 }

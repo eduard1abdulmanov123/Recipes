@@ -10,8 +10,7 @@ class LocalNavigationModule {
 
     @Singleton
     @Provides
-    fun provideLocalNavigationHolder():LocalCiceroneHolder{
+    fun provideLocalNavigationHolder(): LocalCiceroneHolder {
         return LocalCiceroneHolder()
     }
-
 }

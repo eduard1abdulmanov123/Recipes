@@ -11,7 +11,7 @@ import abdulmanov.eduard.recipes.presentation.ui.adapters.RecipesDelegateAdapter
 import abdulmanov.eduard.recipes.presentation.ui.base.*
 import abdulmanov.eduard.recipes.presentation.ui.model.CategoryVM
 import abdulmanov.eduard.recipes.presentation.ui.model.LoadingVM
-import abdulmanov.eduard.recipes.presentation.ui.model.LoadingVM.*
+import abdulmanov.eduard.recipes.presentation.ui.model.LoadingVM.LoadingViewModelState
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -147,7 +147,9 @@ class CategoryFragment : Fragment(R.layout.fragment_category), BackButtonListene
             is Paginator.State.Empty -> establishEmptyState()
             is Paginator.State.EmptyProgress -> establishEmptyProgressState()
             is Paginator.State.EmptyError -> establishEmptyErrorState(state.error)
-            is Paginator.State.EmptyProgressAfterError -> establishEmptyProgressAfterErrorState(state.error)
+            is Paginator.State.EmptyProgressAfterError -> establishEmptyProgressAfterErrorState(
+                state.error
+            )
             is Paginator.State.Data<*> -> establishDataState(state.data as List<IComparableItem>)
             is Paginator.State.NewPageProgress<*> -> establishNewPageProgressState(state.data as List<IComparableItem>)
             is Paginator.State.NewPageError<*> -> establishNewPageErrorState(state.data as List<IComparableItem>)

@@ -7,11 +7,10 @@ import io.reactivex.Single
 
 class GetDetailsRecipeUseCase(
     private val recipesRepository: RecipesRepository
-):SingleUseCaseWithOneParameter<String,DetailsRecipe> {
+) : SingleUseCaseWithOneParameter<String, DetailsRecipe> {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun execute(id: String): Single<DetailsRecipe> {
         return recipesRepository.getDetailsRecipe(id)
     }
-
 }

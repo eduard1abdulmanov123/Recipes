@@ -14,22 +14,19 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun provideCategoriesService():CategoriesService{
+    fun provideCategoriesService(): CategoriesService {
         return CategoriesService()
     }
 
     @Singleton
     @Provides
-    fun provideRecipesService():RecipesService{
+    fun provideRecipesService(): RecipesService {
         return RecipesService()
     }
 
     @Singleton
     @Provides
-    fun provideDetailsRecipesService(
-        client: OkHttpClient,
-        mediaType: MediaType
-    ):DetailsRecipeService{
-        return DetailsRecipeService(client,mediaType)
+    fun provideDetailsRecipesService(client: OkHttpClient, mediaType: MediaType): DetailsRecipeService {
+        return DetailsRecipeService(client, mediaType)
     }
 }
