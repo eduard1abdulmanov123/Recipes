@@ -13,10 +13,7 @@ import org.json.JSONObject
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
-class DetailsRecipeService(
-    private val client: OkHttpClient,
-    private val mediaType: MediaType
-) {
+class DetailsRecipeService(private val client: OkHttpClient, private val mediaType: MediaType) {
 
     fun getDetailsRecipe(url: String): DetailsRecipe {
         return Jsoup.connect(url).get().run {
@@ -185,9 +182,6 @@ class DetailsRecipeService(
     }
 
     private fun String.ifEmptyReturnNull(): String? {
-        return if (isNotEmpty())
-            this
-        else
-            null
+        return if (isNotEmpty()) this else null
     }
 }

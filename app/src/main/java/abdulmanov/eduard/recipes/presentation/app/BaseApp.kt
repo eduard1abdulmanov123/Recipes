@@ -8,10 +8,6 @@ import com.squareup.picasso.Picasso
 
 class BaseApp : Application() {
 
-    companion object {
-        private const val MAX_CACHE = 250_000_000
-    }
-
     val appComponent: AppComponent by lazy {
         DaggerAppComponent.factory().create(applicationContext)
     }
@@ -27,5 +23,9 @@ class BaseApp : Application() {
             .memoryCache(LruCache(MAX_CACHE))
             .build()
         Picasso.setSingletonInstance(picasso)
+    }
+
+    companion object {
+        private const val MAX_CACHE = 250_000_000
     }
 }

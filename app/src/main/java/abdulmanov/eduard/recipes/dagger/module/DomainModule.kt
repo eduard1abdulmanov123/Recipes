@@ -35,11 +35,7 @@ class DomainModule {
 
     @Singleton
     @Provides
-    fun provideRecipesRepository(
-        categoriesService: CategoriesService,
-        recipesService: RecipesService,
-        detailsRecipeService: DetailsRecipeService
-    ): RecipesRepository {
+    fun provideRecipesRepository(categoriesService: CategoriesService, recipesService: RecipesService, detailsRecipeService: DetailsRecipeService): RecipesRepository {
         return RecipesRepositoryImpl(categoriesService, recipesService, detailsRecipeService)
     }
 }
