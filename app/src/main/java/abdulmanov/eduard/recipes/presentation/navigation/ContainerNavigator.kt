@@ -5,12 +5,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.android.support.SupportAppScreen
-import ru.terrakok.cicerone.commands.*
+import ru.terrakok.cicerone.commands.Back
+import ru.terrakok.cicerone.commands.Command
+import ru.terrakok.cicerone.commands.Forward
 
 open class ContainerNavigator(
-    private val fragmentManager:FragmentManager,
-    private val containerId:Int
-):Navigator {
+    private val fragmentManager: FragmentManager,
+    private val containerId: Int
+) : Navigator {
 
     override fun applyCommands(commands: Array<out Command>) {
         fragmentManager.executePendingTransactions()
@@ -19,14 +21,14 @@ open class ContainerNavigator(
         }
     }
 
-    private fun applyCommand(command:Command){
-        when(command){
+    private fun applyCommand(command: Command) {
+        when (command) {
             is Forward -> forward(command)
             is Back -> back(command)
         }
     }
 
-    private fun forward(command: Forward){
+    private fun forward(command: Forward) {
         fragmentManager.beginTransaction().apply {
             val fragments = fragmentManager.fragments
             val newFragment = (command.screen as SupportAppScreen).fragment!!
@@ -38,27 +40,26 @@ open class ContainerNavigator(
                 this
             )
 
-            if(fragments.isNotEmpty()){
+            if (fragments.isNotEmpty()) {
                 hide(fragments.last())
             }
-            add(containerId,newFragment)
+            add(containerId, newFragment)
         }.commit()
     }
 
-
-    private fun back(command: Command){
+    private fun back(command: Command) {
         fragmentManager.beginTransaction().apply {
             val fragments = fragmentManager.fragments
 
             setupFragmentTransaction(
                 command,
                 fragments.lastOrNull(),
-                fragments.getOrNull(fragments.size-2),
+                fragments.getOrNull(fragments.size - 2),
                 this
             )
 
             remove(fragments.last())
-            if(fragments.size>1)
+            if (fragments.size > 1)
                 show(fragments[fragments.size - 2])
         }.commit()
     }

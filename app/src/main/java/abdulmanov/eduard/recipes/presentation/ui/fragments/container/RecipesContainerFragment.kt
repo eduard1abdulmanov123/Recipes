@@ -1,51 +1,41 @@
 package abdulmanov.eduard.recipes.presentation.ui.fragments.container
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.View
-
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
 import abdulmanov.eduard.recipes.presentation.navigation.*
-import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryFragment
-import abdulmanov.eduard.recipes.presentation.ui.fragments.tape.TapeFragment
 import android.content.Context
-import android.util.Log
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Back
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
-import java.util.*
 import javax.inject.Inject
 
-class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),RouterProvide,BackButtonListener {
+class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container), RouterProvide,
+    BackButtonListener {
 
     @Inject
     lateinit var ciceroneHolder: LocalCiceroneHolder
 
-    private val cicerone:Cicerone<Router> by lazy {
+    private val cicerone: Cicerone<Router> by lazy {
         ciceroneHolder.getCicerone(CONTAINER_NAME)
     }
 
-    private val navigator:Navigator by lazy {
-       object : ContainerNavigator(childFragmentManager,R.id.recipes_container){
-           override fun setupFragmentTransaction(
-               command: Command,
-               currentFragment: Fragment?,
-               nextFragment: Fragment?,
-               fragmentTransaction: FragmentTransaction
-           ) {
-               if(command is Forward){
-                   fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-               }else if(command is Back){
-                   fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-               }
-           }
-       }
+    private val navigator: Navigator by lazy {
+        object : ContainerNavigator(childFragmentManager, R.id.recipes_container) {
+            override fun setupFragmentTransaction(command: Command, currentFragment: Fragment?, nextFragment: Fragment?, fragmentTransaction: FragmentTransaction) {
+                if (command is Forward) {
+                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                } else if (command is Back) {
+                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                }
+            }
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -55,7 +45,7 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),R
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(childFragmentManager.findFragmentById(R.id.recipes_container) == null){
+        if (childFragmentManager.findFragmentById(R.id.recipes_container) == null) {
             cicerone.router.navigateTo(Screens.Tape)
         }
     }
@@ -75,15 +65,15 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),R
     }
 
     override fun onBackPressed(): Boolean {
-        return if(childFragmentManager.fragments.size>1){
+        return if (childFragmentManager.fragments.size > 1) {
             val fragment = childFragmentManager.findFragmentById(R.id.recipes_container)
-            fragment!=null && (fragment is BackButtonListener) && fragment.onBackPressed()
-        }else{
+            fragment != null && (fragment is BackButtonListener) && fragment.onBackPressed()
+        } else {
             false
         }
     }
 
-    companion object{
+    companion object {
         private const val CONTAINER_NAME = "RECIPES"
     }
 }

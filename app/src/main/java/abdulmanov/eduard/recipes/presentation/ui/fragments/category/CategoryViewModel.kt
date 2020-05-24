@@ -17,8 +17,8 @@ import javax.inject.Inject
 
 class CategoryViewModel @Inject constructor(
     private val getRecipesUseCase: GetRecipesUseCase,
-    private val mapper:RecipesViewModelMapper
-):BaseViewModel() {
+    private val mapper: RecipesViewModelMapper
+) : BaseViewModel() {
 
     var category: String? = null
 
@@ -54,10 +54,10 @@ class CategoryViewModel @Inject constructor(
 
     fun onBackPressed() = router?.exit()
 
-    fun onClickRecipeItem(recipe:RecipeVM) = router?.navigateTo(Screens.DetailsRecipe(recipe))
+    fun onClickRecipeItem(recipe: RecipeVM) = router?.navigateTo(Screens.DetailsRecipe(recipe))
 
     private fun loadNewPage(page: Int) {
-        if(category != null) {
+        if (category != null) {
             pageDisposable?.dispose()
             pageDisposable = getRecipesUseCase.execute(category!!, page)
                 .map(mapper::mapRecipesToViewModels)
@@ -72,7 +72,7 @@ class CategoryViewModel @Inject constructor(
                     }
                 )
             pageDisposable?.connect()
-        }else{
+        } else {
             throw NullPointerException("Category should not be empty")
         }
     }

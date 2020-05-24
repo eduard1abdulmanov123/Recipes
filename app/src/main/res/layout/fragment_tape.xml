@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -37,7 +36,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/color_text_primary"
-                android:text="@string/tape_best_recipes_of_the_day_title"/>
+                android:text="@string/tape_best_recipes_of_the_day_title" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_screen_best_recipes_recycler_view"
@@ -47,7 +46,7 @@
                 android:layout_marginTop="8dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:clipToPadding="false"/>
+                android:clipToPadding="false" />
 
             <TextView
                 android:id="@+id/main_screen_categories_title"
@@ -59,7 +58,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/color_text_primary"
-                android:text="@string/tape_categories_title"/>
+                android:text="@string/tape_categories_title" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_screen_categories_recycler_view"
@@ -72,7 +71,7 @@
                 android:paddingBottom="4dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:clipToPadding="false"/>
+                android:clipToPadding="false" />
 
         </RelativeLayout>
 
@@ -82,12 +81,12 @@
         layout="@layout/layout_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true" />
 
     <include
         layout="@layout/layout_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

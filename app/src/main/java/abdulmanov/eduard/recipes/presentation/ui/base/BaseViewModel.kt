@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-abstract class BaseViewModel: ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -18,16 +18,16 @@ abstract class BaseViewModel: ViewModel() {
 
     protected fun <T> Single<T>.safeSubscribe(
         onSuccess: (T) -> Unit,
-        onError:(Throwable) -> Unit
-    ){
+        onError: (Throwable) -> Unit
+    ) {
         compositeDisposable.add(
             subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(onSuccess,onError)
+                .subscribe(onSuccess, onError)
         )
     }
 
-    protected fun Disposable.connect(){
+    protected fun Disposable.connect() {
         compositeDisposable.add(this)
     }
 }

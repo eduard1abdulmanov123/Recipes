@@ -11,10 +11,10 @@ import javax.inject.Inject
 
 class DetailsRecipeViewModel @Inject constructor(
     private val getDetailsRecipeUseCase: GetDetailsRecipeUseCase,
-    private val mapper:RecipesViewModelMapper
-):BaseViewModel() {
+    private val mapper: RecipesViewModelMapper
+) : BaseViewModel() {
 
-    var router:Router? = null
+    var router: Router? = null
 
     private val _state = MutableLiveData<ScreenState>()
     val state: LiveData<ScreenState>
@@ -24,14 +24,11 @@ class DetailsRecipeViewModel @Inject constructor(
         _state.value = ScreenState.Start
     }
 
-    fun loadDetailsRecipe(id:String){
-
+    fun loadDetailsRecipe(id: String) {
     }
 
-    fun refresh(id:String){
-
+    fun refresh(id: String) {
     }
 
     fun onBackPressed() = router?.exit()
-
 }

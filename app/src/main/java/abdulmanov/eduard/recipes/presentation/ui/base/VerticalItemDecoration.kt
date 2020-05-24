@@ -7,27 +7,32 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 class VerticalItemDecoration(
-    private var offsetLeftRight:Int,
-    private var offsetTopBottom:Int,
+    private var offsetLeftRight: Int,
+    private var offsetTopBottom: Int,
     context: Context
-): RecyclerView.ItemDecoration() {
+) : RecyclerView.ItemDecoration() {
 
     init {
         offsetLeftRight *= (context.resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
         offsetTopBottom *= (context.resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
     }
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
 
-        when(parent.getChildAdapterPosition(view)) {
+        when (parent.getChildAdapterPosition(view)) {
             0 -> outRect.bottom = offsetTopBottom
-            parent.adapter!!.itemCount-1 -> outRect.top = offsetTopBottom
+            parent.adapter!!.itemCount - 1 -> outRect.top = offsetTopBottom
             else -> {
                 outRect.top = offsetTopBottom
                 outRect.bottom = offsetTopBottom
             }
         }
-        outRect.right =  offsetLeftRight
-        outRect.left =  offsetLeftRight
+        outRect.right = offsetLeftRight
+        outRect.left = offsetLeftRight
     }
 }

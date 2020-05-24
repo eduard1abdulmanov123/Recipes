@@ -5,14 +5,12 @@ import abdulmanov.eduard.recipes.domain.models.Recipe
 import abdulmanov.eduard.recipes.domain.repositories.RecipesRepository
 import io.reactivex.Single
 
-
 class GetRecipesUseCase(
     private val recipesRepository: RecipesRepository
-):SingleUseCaseWithTwoParameter<String,Int,List<Recipe>> {
+) : SingleUseCaseWithTwoParameter<String, Int, List<Recipe>> {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun execute(category: String, page: Int): Single<List<Recipe>> {
-        return recipesRepository.getRecipes(category,page)
+        return recipesRepository.getRecipes(category, page)
     }
-
 }

@@ -4,15 +4,17 @@ import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.domain.models.Category
 import abdulmanov.eduard.recipes.domain.models.Recipe
 import abdulmanov.eduard.recipes.domain.models.Tape
-import abdulmanov.eduard.recipes.presentation.ui.model.*
+import abdulmanov.eduard.recipes.presentation.ui.model.CategoryVM
+import abdulmanov.eduard.recipes.presentation.ui.model.RecipeVM
+import abdulmanov.eduard.recipes.presentation.ui.model.TapeVM
 import android.content.Context
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class RecipesViewModelMapperImpl @Inject constructor(
-    private val context:Context
-):RecipesViewModelMapper {
+    private val context: Context
+) : RecipesViewModelMapper {
 
     override fun mapRecipesToViewModels(recipes: List<Recipe>): List<RecipeVM> {
         return recipes.map {
@@ -36,19 +38,23 @@ class RecipesViewModelMapperImpl @Inject constructor(
         )
     }
 
-    private fun mapCategoriesToViewModels(categories:List<Category>):List<CategoryVM>{
+    private fun mapCategoriesToViewModels(categories: List<Category>): List<CategoryVM> {
         return categories.map {
             CategoryVM(
                 image = it.getDrawable(),
                 name = it.name,
                 value = it.value,
-                countRecipes = context.resources.getQuantityString(R.plurals.count_recipes,it.countRecipes,it.countRecipes)
+                countRecipes = context.resources.getQuantityString(
+                    R.plurals.count_recipes,
+                    it.countRecipes,
+                    it.countRecipes
+                )
             )
         }
     }
 
-    private fun Category.getDrawable():Int{
-        return when(value){
+    private fun Category.getDrawable(): Int {
+        return when (value) {
             "zagotovki" -> R.drawable.zagotovki
             "salaty" -> R.drawable.salaty
             "pasta-picca" -> R.drawable.pasta_picca

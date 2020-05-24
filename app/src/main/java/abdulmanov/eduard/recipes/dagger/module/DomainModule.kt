@@ -17,19 +17,19 @@ class DomainModule {
 
     @Singleton
     @Provides
-    fun provideGetRecipesUseCase(repository: RecipesRepository):GetRecipesUseCase{
+    fun provideGetRecipesUseCase(repository: RecipesRepository): GetRecipesUseCase {
         return GetRecipesUseCase(repository)
     }
 
     @Singleton
     @Provides
-    fun provideGetTapeUseCase(repository: RecipesRepository):GetTapeUseCase{
+    fun provideGetTapeUseCase(repository: RecipesRepository): GetTapeUseCase {
         return GetTapeUseCase(repository)
     }
 
     @Singleton
     @Provides
-    fun provideGetDetailsRecipeUseCase(repository: RecipesRepository):GetDetailsRecipeUseCase{
+    fun provideGetDetailsRecipeUseCase(repository: RecipesRepository): GetDetailsRecipeUseCase {
         return GetDetailsRecipeUseCase(repository)
     }
 
@@ -39,7 +39,7 @@ class DomainModule {
         categoriesService: CategoriesService,
         recipesService: RecipesService,
         detailsRecipeService: DetailsRecipeService
-    ):RecipesRepository{
-        return RecipesRepositoryImpl(categoriesService,recipesService,detailsRecipeService)
+    ): RecipesRepository {
+        return RecipesRepositoryImpl(categoriesService, recipesService, detailsRecipeService)
     }
 }
