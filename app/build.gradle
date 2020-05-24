@@ -38,6 +38,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    /*LeakCanary*/
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.3'
+
     /*AndroidX*/
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
@@ -62,11 +65,11 @@ dependencies {
     /*cicerone*/
     implementation 'ru.terrakok.cicerone:cicerone:5.1.0'
 
-    def jsoup_version = "1.12.1"
-    implementation "org.jsoup:jsoup:$jsoup_version"
+    /*jsoup*/
+    implementation "org.jsoup:jsoup:1.12.1"
 
-    def okhttp3_version = "4.4.0"
-    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    /*okhttp*/
+    implementation "com.squareup.okhttp3:okhttp:4.4.0"
 
     def dagger_version = "2.25.2"
     implementation "com.google.dagger:dagger:$dagger_version"
