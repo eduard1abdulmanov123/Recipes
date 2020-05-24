@@ -5,7 +5,6 @@ import abdulmanov.eduard.recipes.dagger.component.DaggerAppComponent
 import android.app.Application
 import com.squareup.picasso.LruCache
 import com.squareup.picasso.Picasso
-import io.reactivex.plugins.RxJavaPlugins
 
 class BaseApp:Application() {
 
