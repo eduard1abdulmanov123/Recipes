@@ -6,15 +6,20 @@ import android.view.View
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
-import abdulmanov.eduard.recipes.presentation.navigation.BackButtonListener
-import abdulmanov.eduard.recipes.presentation.navigation.LocalCiceroneHolder
-import abdulmanov.eduard.recipes.presentation.navigation.RouterProvide
-import abdulmanov.eduard.recipes.presentation.navigation.Screens
+import abdulmanov.eduard.recipes.presentation.navigation.*
+import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryFragment
+import abdulmanov.eduard.recipes.presentation.ui.fragments.tape.TapeFragment
 import android.content.Context
+import android.util.Log
+import androidx.fragment.app.FragmentTransaction
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
+import ru.terrakok.cicerone.commands.Back
+import ru.terrakok.cicerone.commands.Command
+import ru.terrakok.cicerone.commands.Forward
+import java.util.*
 import javax.inject.Inject
 
 class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),RouterProvide,BackButtonListener {
@@ -27,7 +32,20 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),R
     }
 
     private val navigator:Navigator by lazy {
-        SupportAppNavigator(requireActivity(),childFragmentManager,R.id.recipes_container)
+       object : ContainerNavigator(childFragmentManager,R.id.recipes_container){
+           override fun setupFragmentTransaction(
+               command: Command,
+               currentFragment: Fragment?,
+               nextFragment: Fragment?,
+               fragmentTransaction: FragmentTransaction
+           ) {
+               if(command is Forward){
+                   fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+               }else if(command is Back){
+                   fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+               }
+           }
+       }
     }
 
     override fun onAttach(context: Context) {
@@ -38,7 +56,7 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),R
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if(childFragmentManager.findFragmentById(R.id.recipes_container) == null){
-            cicerone.router.replaceScreen(Screens.MainScreen)
+            cicerone.router.navigateTo(Screens.Tape)
         }
     }
 
@@ -57,12 +75,11 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),R
     }
 
     override fun onBackPressed(): Boolean {
-        val fragment = childFragmentManager.findFragmentById(R.id.recipes_container)
-        return if (fragment != null && (fragment is BackButtonListener) && fragment.onBackPressed()) {
-            true
-        } else {
-            (requireActivity() as RouterProvide).getRouter().exit()
-            true
+        return if(childFragmentManager.fragments.size>1){
+            val fragment = childFragmentManager.findFragmentById(R.id.recipes_container)
+            fragment!=null && (fragment is BackButtonListener) && fragment.onBackPressed()
+        }else{
+            false
         }
     }
 

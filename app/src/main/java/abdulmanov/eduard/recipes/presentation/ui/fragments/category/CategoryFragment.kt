@@ -124,12 +124,8 @@ class CategoryFragment : Fragment(R.layout.fragment_category), BackButtonListene
 
     private fun initAdapter() {
         adapter = DiffUtilCompositeAdapter.Builder()
-            .add(RecipesDelegateAdapter {
-
-            })
-            .add(LoadingDelegateAdapter {
-                viewModel.repeat()
-            })
+            .add(RecipesDelegateAdapter(viewModel::onClickRecipeItem))
+            .add(LoadingDelegateAdapter(viewModel::repeat))
             .build()
     }
 

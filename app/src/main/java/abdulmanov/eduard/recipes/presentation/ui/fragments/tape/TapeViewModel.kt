@@ -6,6 +6,7 @@ import abdulmanov.eduard.recipes.presentation.ui.base.BaseViewModel
 import abdulmanov.eduard.recipes.presentation.ui.base.ScreenState
 import abdulmanov.eduard.recipes.presentation.ui.mapper.RecipesViewModelMapper
 import abdulmanov.eduard.recipes.presentation.ui.model.CategoryVM
+import abdulmanov.eduard.recipes.presentation.ui.model.RecipeVM
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.terrakok.cicerone.Router
@@ -39,6 +40,8 @@ class TapeViewModel @Inject constructor(
     fun onBackPressed() = router?.exit()
 
     fun onClickCategoryItem(category:CategoryVM) = router?.navigateTo(Screens.Category(category))
+
+    fun onClickBestRecipeItem(recipe:RecipeVM) = router?.navigateTo(Screens.DetailsRecipe(recipe))
 
     private fun getTape(){
         getTapeUseCase.execute()

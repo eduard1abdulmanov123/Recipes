@@ -4,6 +4,7 @@ import abdulmanov.eduard.recipes.dagger.module.*
 import abdulmanov.eduard.recipes.presentation.ui.activities.MainActivity
 import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryFragment
 import abdulmanov.eduard.recipes.presentation.ui.fragments.container.RecipesContainerFragment
+import abdulmanov.eduard.recipes.presentation.ui.fragments.details.DetailsRecipeFragment
 import abdulmanov.eduard.recipes.presentation.ui.fragments.tape.TapeFragment
 import android.content.Context
 import dagger.BindsInstance
@@ -36,4 +37,6 @@ interface AppComponent{
     fun inject(tapeFragment: TapeFragment)
 
     fun inject(categoryFragment:CategoryFragment)
+
+    fun inject(detailsRecipeFragment: DetailsRecipeFragment)
 }

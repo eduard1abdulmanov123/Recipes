@@ -7,7 +7,7 @@ import com.example.delegateadapter.delegate.KDelegateAdapter
 import kotlinx.android.synthetic.main.item_list_loading.*
 
 class LoadingDelegateAdapter (
-    private val refreshClickListener:()->Unit
+    private val refreshClickListener:()->Unit?
 ) : KDelegateAdapter<LoadingVM>(){
 
     override fun getLayoutId() = R.layout.item_list_loading

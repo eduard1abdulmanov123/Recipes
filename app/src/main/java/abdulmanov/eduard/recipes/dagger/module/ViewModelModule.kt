@@ -2,6 +2,7 @@ package abdulmanov.eduard.recipes.dagger.module
 
 import abdulmanov.eduard.recipes.presentation.ui.base.ViewModelFactory
 import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryViewModel
+import abdulmanov.eduard.recipes.presentation.ui.fragments.details.DetailsRecipeViewModel
 import abdulmanov.eduard.recipes.presentation.ui.fragments.tape.TapeViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -15,12 +16,17 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(TapeViewModel::class)
-    abstract fun bindMainScreenViewModel(tapeViewModel: TapeViewModel):ViewModel
+    abstract fun bindTapeViewModel(tapeViewModel: TapeViewModel):ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(CategoryViewModel::class)
-    abstract fun bindCategoryScreenViewModel(categoryViewModel: CategoryViewModel):ViewModel
+    abstract fun bindCategoryViewModel(categoryViewModel: CategoryViewModel):ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailsRecipeViewModel::class)
+    abstract fun bindDetailsRecipeViewModel(detailsRecipeViewModel: DetailsRecipeViewModel):ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

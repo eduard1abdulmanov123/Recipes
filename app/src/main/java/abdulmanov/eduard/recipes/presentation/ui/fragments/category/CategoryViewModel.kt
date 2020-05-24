@@ -1,6 +1,7 @@
 package abdulmanov.eduard.recipes.presentation.ui.fragments.category
 
 import abdulmanov.eduard.recipes.domain.interactors.recipes.GetRecipesUseCase
+import abdulmanov.eduard.recipes.presentation.navigation.Screens
 import abdulmanov.eduard.recipes.presentation.ui.base.BaseViewModel
 import abdulmanov.eduard.recipes.presentation.ui.base.Event
 import abdulmanov.eduard.recipes.presentation.ui.base.Paginator
@@ -52,6 +53,8 @@ class CategoryViewModel @Inject constructor(
     fun loadNextPage() = paginator.proceed(Paginator.Action.LoadMore)
 
     fun onBackPressed() = router?.exit()
+
+    fun onClickRecipeItem(recipe:RecipeVM) = router?.navigateTo(Screens.DetailsRecipe(recipe))
 
     private fun loadNewPage(page: Int) {
         if(category != null) {

@@ -1,8 +1,11 @@
 package abdulmanov.eduard.recipes.presentation.ui.model
 
 
+import android.os.Parcelable
 import com.example.delegateadapter.delegate.diff.IComparableItem
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class RecipeVM(
     val id:Long,
     val name:String,
@@ -12,7 +15,7 @@ data class RecipeVM(
     val time:String,
     val countLike:String,
     val countDislike:String
-):IComparableItem{
+):Parcelable, IComparableItem{
     override fun id() = id
 
     override fun content() = this

@@ -13,6 +13,7 @@ import abdulmanov.eduard.recipes.presentation.ui.adapters.*
 import abdulmanov.eduard.recipes.presentation.ui.base.*
 import abdulmanov.eduard.recipes.presentation.ui.model.TapeVM
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -79,9 +80,7 @@ class TapeFragment : Fragment(R.layout.fragment_tape), BackButtonListener {
             setHasFixedSize(true)
             addItemDecoration(HorizontalItemDecoration(6, 4, context))
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = BestRecipesAdapter {
-
-            }
+            adapter = BestRecipesAdapter(viewModel::onClickBestRecipeItem)
         }
     }
 
