@@ -1,10 +1,11 @@
-package abdulmanov.eduard.recipes.presentation.ui.adapters
+package abdulmanov.eduard.recipes.presentation.ui.recipes.adapters
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.common.getScreenSize
 import abdulmanov.eduard.recipes.presentation.common.inflate
 import abdulmanov.eduard.recipes.presentation.common.loadImg
-import abdulmanov.eduard.recipes.presentation.ui.models.CategoryPresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.base.BaseAdapter
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.CategoryPresentationModel
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_category.view.*
@@ -13,10 +14,7 @@ class CategoriesAdapter(
     private val itemViewClickListener:(CategoryPresentationModel) -> Unit?
 ) : BaseAdapter<CategoryPresentationModel>() {
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): BaseViewHolder<CategoryPresentationModel> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<CategoryPresentationModel> {
         return ViewHolder(parent.inflate(R.layout.item_list_category))
     }
 

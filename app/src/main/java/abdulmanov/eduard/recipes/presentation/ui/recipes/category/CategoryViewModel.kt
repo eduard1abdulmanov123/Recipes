@@ -1,12 +1,12 @@
-package abdulmanov.eduard.recipes.presentation.ui.fragments.category
+package abdulmanov.eduard.recipes.presentation.ui.recipes.category
 
 import abdulmanov.eduard.recipes.domain.interactors.recipes.GetRecipesUseCase
 import abdulmanov.eduard.recipes.presentation.navigation.Screens
 import abdulmanov.eduard.recipes.presentation.ui.base.BaseViewModel
 import abdulmanov.eduard.recipes.presentation.ui.base.Event
 import abdulmanov.eduard.recipes.presentation.ui.base.Paginator
-import abdulmanov.eduard.recipes.presentation.ui.mappers.RecipesPresentationModelMapper
-import abdulmanov.eduard.recipes.presentation.ui.models.RecipePresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.mappers.RecipesPresentationModelMapper
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.RecipePresentationModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers

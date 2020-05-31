@@ -1,13 +1,13 @@
-package abdulmanov.eduard.recipes.presentation.ui.fragments.tape
+package abdulmanov.eduard.recipes.presentation.ui.recipes.tape
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.domain.interactors.recipes.GetTapeUseCase
 import abdulmanov.eduard.recipes.presentation.navigation.Screens
 import abdulmanov.eduard.recipes.presentation.ui.base.BaseViewModel
 import abdulmanov.eduard.recipes.presentation.ui.base.ScreenState
-import abdulmanov.eduard.recipes.presentation.ui.mappers.RecipesPresentationModelMapper
-import abdulmanov.eduard.recipes.presentation.ui.models.CategoryPresentationModel
-import abdulmanov.eduard.recipes.presentation.ui.models.RecipePresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.mappers.RecipesPresentationModelMapper
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.CategoryPresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.RecipePresentationModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.terrakok.cicerone.Router

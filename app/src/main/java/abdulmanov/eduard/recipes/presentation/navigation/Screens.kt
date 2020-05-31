@@ -1,10 +1,10 @@
 package abdulmanov.eduard.recipes.presentation.navigation
 
-import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryFragment
-import abdulmanov.eduard.recipes.presentation.ui.fragments.details.DetailsRecipeFragment
-import abdulmanov.eduard.recipes.presentation.ui.fragments.tape.TapeFragment
-import abdulmanov.eduard.recipes.presentation.ui.models.CategoryPresentationModel
-import abdulmanov.eduard.recipes.presentation.ui.models.RecipePresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.category.CategoryFragment
+import abdulmanov.eduard.recipes.presentation.ui.recipes.details.DetailsRecipeFragment
+import abdulmanov.eduard.recipes.presentation.ui.recipes.tape.TapeFragment
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.CategoryPresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.RecipePresentationModel
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 object Screens {

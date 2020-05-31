@@ -1,22 +1,20 @@
-package abdulmanov.eduard.recipes.presentation.ui.adapters
+package abdulmanov.eduard.recipes.presentation.ui.recipes.adapters
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.common.getScreenSize
 import abdulmanov.eduard.recipes.presentation.common.inflate
 import abdulmanov.eduard.recipes.presentation.common.loadImg
-import abdulmanov.eduard.recipes.presentation.ui.models.RecipePresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.base.BaseAdapter
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.RecipePresentationModel
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_best_recipe.view.*
 
 class BestRecipesAdapter(
     private val itemViewClickListener:(RecipePresentationModel)->Unit?
-):BaseAdapter<RecipePresentationModel>() {
+): BaseAdapter<RecipePresentationModel>() {
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): BaseViewHolder<RecipePresentationModel> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<RecipePresentationModel> {
         return ViewHolder(parent.inflate(R.layout.item_list_best_recipe))
     }
 

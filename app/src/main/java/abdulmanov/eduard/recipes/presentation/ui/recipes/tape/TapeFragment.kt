@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.ui.fragments.tape
+package abdulmanov.eduard.recipes.presentation.ui.recipes.tape
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,9 @@ import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
 import abdulmanov.eduard.recipes.presentation.navigation.BackButtonListener
 import abdulmanov.eduard.recipes.presentation.navigation.RouterProvide
-import abdulmanov.eduard.recipes.presentation.ui.adapters.*
+import abdulmanov.eduard.recipes.presentation.ui.recipes.adapters.*
 import abdulmanov.eduard.recipes.presentation.ui.base.*
-import abdulmanov.eduard.recipes.presentation.ui.models.TapePresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.TapePresentationModel
 import android.content.Context
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider

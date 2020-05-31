@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.ui.fragments.details
+package abdulmanov.eduard.recipes.presentation.ui.recipes.details
 
 
 import abdulmanov.eduard.recipes.R
@@ -7,7 +7,7 @@ import abdulmanov.eduard.recipes.presentation.navigation.BackButtonListener
 import abdulmanov.eduard.recipes.presentation.navigation.RouterProvide
 import abdulmanov.eduard.recipes.presentation.ui.base.ScreenState
 import abdulmanov.eduard.recipes.presentation.ui.base.ViewModelFactory
-import abdulmanov.eduard.recipes.presentation.ui.models.RecipePresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.RecipePresentationModel
 import android.content.Context
 import android.os.Bundle
 import android.view.View

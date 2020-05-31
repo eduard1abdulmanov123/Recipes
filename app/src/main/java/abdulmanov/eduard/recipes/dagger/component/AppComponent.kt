@@ -1,11 +1,11 @@
 package abdulmanov.eduard.recipes.dagger.component
 
 import abdulmanov.eduard.recipes.dagger.module.*
-import abdulmanov.eduard.recipes.presentation.ui.activities.MainActivity
-import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryFragment
-import abdulmanov.eduard.recipes.presentation.ui.fragments.container.RecipesContainerFragment
-import abdulmanov.eduard.recipes.presentation.ui.fragments.details.DetailsRecipeFragment
-import abdulmanov.eduard.recipes.presentation.ui.fragments.tape.TapeFragment
+import abdulmanov.eduard.recipes.presentation.ui.main.MainActivity
+import abdulmanov.eduard.recipes.presentation.ui.recipes.category.CategoryFragment
+import abdulmanov.eduard.recipes.presentation.ui.recipes.container.RecipesContainerFragment
+import abdulmanov.eduard.recipes.presentation.ui.recipes.details.DetailsRecipeFragment
+import abdulmanov.eduard.recipes.presentation.ui.recipes.tape.TapeFragment
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component

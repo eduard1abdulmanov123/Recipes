@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.ui.fragments.category
+package abdulmanov.eduard.recipes.presentation.ui.recipes.category
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
@@ -6,12 +6,12 @@ import abdulmanov.eduard.recipes.presentation.common.handleError
 import abdulmanov.eduard.recipes.presentation.common.visibility
 import abdulmanov.eduard.recipes.presentation.navigation.BackButtonListener
 import abdulmanov.eduard.recipes.presentation.navigation.RouterProvide
-import abdulmanov.eduard.recipes.presentation.ui.adapters.LoadingDelegateAdapter
-import abdulmanov.eduard.recipes.presentation.ui.adapters.RecipesDelegateAdapter
+import abdulmanov.eduard.recipes.presentation.ui.recipes.adapters.LoadingDelegateAdapter
+import abdulmanov.eduard.recipes.presentation.ui.recipes.adapters.RecipesDelegateAdapter
 import abdulmanov.eduard.recipes.presentation.ui.base.*
-import abdulmanov.eduard.recipes.presentation.ui.models.CategoryPresentationModel
-import abdulmanov.eduard.recipes.presentation.ui.models.LoadingPresentationModel
-import abdulmanov.eduard.recipes.presentation.ui.models.LoadingPresentationModel.*
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.CategoryPresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.LoadingPresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.LoadingPresentationModel.*
 import android.content.Context
 import android.os.Bundle
 import android.view.View

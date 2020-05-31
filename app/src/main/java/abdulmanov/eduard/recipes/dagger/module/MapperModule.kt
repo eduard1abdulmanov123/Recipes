@@ -1,7 +1,7 @@
 package abdulmanov.eduard.recipes.dagger.module
 
-import abdulmanov.eduard.recipes.presentation.ui.mappers.RecipesPresentationModelMapper
-import abdulmanov.eduard.recipes.presentation.ui.mappers.RecipesPresentationModelMapperImpl
+import abdulmanov.eduard.recipes.presentation.ui.recipes.mappers.RecipesPresentationModelMapper
+import abdulmanov.eduard.recipes.presentation.ui.recipes.mappers.RecipesPresentationModelMapperImpl
 import dagger.Binds
 import dagger.Module
 

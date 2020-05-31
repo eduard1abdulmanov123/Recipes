@@ -1,8 +1,8 @@
-package abdulmanov.eduard.recipes.presentation.ui.activities
+package abdulmanov.eduard.recipes.presentation.ui.main
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.navigation.BackButtonListener
-import abdulmanov.eduard.recipes.presentation.ui.fragments.container.RecipesContainerFragment
+import abdulmanov.eduard.recipes.presentation.ui.recipes.container.RecipesContainerFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 

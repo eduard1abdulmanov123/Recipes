@@ -1,8 +1,8 @@
-package abdulmanov.eduard.recipes.presentation.ui.adapters
+package abdulmanov.eduard.recipes.presentation.ui.recipes.adapters
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.common.visibility
-import abdulmanov.eduard.recipes.presentation.ui.models.LoadingPresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.LoadingPresentationModel
 import com.example.delegateadapter.delegate.KDelegateAdapter
 import kotlinx.android.synthetic.main.item_list_loading.*
 

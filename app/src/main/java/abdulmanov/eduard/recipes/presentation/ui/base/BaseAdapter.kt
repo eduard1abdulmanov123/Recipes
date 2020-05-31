@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.ui.adapters
+package abdulmanov.eduard.recipes.presentation.ui.base
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

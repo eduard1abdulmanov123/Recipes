@@ -1,10 +1,10 @@
-package abdulmanov.eduard.recipes.presentation.ui.mappers
+package abdulmanov.eduard.recipes.presentation.ui.recipes.mappers
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.domain.models.Category
 import abdulmanov.eduard.recipes.domain.models.Recipe
 import abdulmanov.eduard.recipes.domain.models.Tape
-import abdulmanov.eduard.recipes.presentation.ui.models.*
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.*
 import android.content.Context
 import javax.inject.Inject
 import javax.inject.Singleton

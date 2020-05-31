@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.ui.fragments.container
+package abdulmanov.eduard.recipes.presentation.ui.recipes.container
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp

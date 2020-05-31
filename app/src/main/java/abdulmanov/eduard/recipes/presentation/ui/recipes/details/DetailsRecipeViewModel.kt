@@ -1,9 +1,9 @@
-package abdulmanov.eduard.recipes.presentation.ui.fragments.details
+package abdulmanov.eduard.recipes.presentation.ui.recipes.details
 
 import abdulmanov.eduard.recipes.domain.interactors.recipes.GetDetailsRecipeUseCase
 import abdulmanov.eduard.recipes.presentation.ui.base.BaseViewModel
 import abdulmanov.eduard.recipes.presentation.ui.base.ScreenState
-import abdulmanov.eduard.recipes.presentation.ui.mappers.RecipesPresentationModelMapper
+import abdulmanov.eduard.recipes.presentation.ui.recipes.mappers.RecipesPresentationModelMapper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.terrakok.cicerone.Router

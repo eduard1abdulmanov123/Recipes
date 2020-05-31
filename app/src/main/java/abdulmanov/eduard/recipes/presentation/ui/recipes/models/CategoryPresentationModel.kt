@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.ui.models
+package abdulmanov.eduard.recipes.presentation.ui.recipes.models
 
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
