@@ -29,18 +29,12 @@ open class ContainerNavigator(
     private fun forward(command: Forward){
         fragmentManager.beginTransaction().apply {
             val fragments = fragmentManager.fragments
+            val currentFragment = fragments.lastOrNull()
             val newFragment = (command.screen as SupportAppScreen).fragment!!
 
-            setupFragmentTransaction(
-                command,
-                fragments.lastOrNull(),
-                newFragment,
-                this
-            )
+            setupFragmentTransaction(command, currentFragment, newFragment, this)
 
-            if(fragments.isNotEmpty()){
-                hide(fragments.last())
-            }
+            currentFragment?.let { hide(it) }
             add(containerId,newFragment)
         }.commit()
     }
@@ -49,25 +43,16 @@ open class ContainerNavigator(
     private fun back(command: Command){
         fragmentManager.beginTransaction().apply {
             val fragments = fragmentManager.fragments
+            val currentFragment = fragments.lastOrNull()
+            val newFragment = fragments.getOrNull(fragments.size-2)
 
-            setupFragmentTransaction(
-                command,
-                fragments.lastOrNull(),
-                fragments.getOrNull(fragments.size-2),
-                this
-            )
-
-            remove(fragments.last())
-            if(fragments.size>1)
-                show(fragments[fragments.size - 2])
+            setupFragmentTransaction(command, currentFragment, newFragment, this)
+            
+            currentFragment?.let { remove(it) }
+            newFragment?.let { show(it) }
         }.commit()
     }
 
-    open fun setupFragmentTransaction(
-        command: Command,
-        currentFragment: Fragment?,
-        nextFragment: Fragment?,
-        fragmentTransaction: FragmentTransaction
-    ) {
+    open fun setupFragmentTransaction(command: Command, currentFragment: Fragment?, nextFragment: Fragment?, fragmentTransaction: FragmentTransaction) {
     }
 }

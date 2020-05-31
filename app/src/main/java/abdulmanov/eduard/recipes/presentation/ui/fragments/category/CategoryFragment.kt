@@ -3,15 +3,15 @@ package abdulmanov.eduard.recipes.presentation.ui.fragments.category
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
 import abdulmanov.eduard.recipes.presentation.common.handleError
-import abdulmanov.eduard.recipes.presentation.common.visibilityGone
+import abdulmanov.eduard.recipes.presentation.common.visibility
 import abdulmanov.eduard.recipes.presentation.navigation.BackButtonListener
 import abdulmanov.eduard.recipes.presentation.navigation.RouterProvide
 import abdulmanov.eduard.recipes.presentation.ui.adapters.LoadingDelegateAdapter
 import abdulmanov.eduard.recipes.presentation.ui.adapters.RecipesDelegateAdapter
 import abdulmanov.eduard.recipes.presentation.ui.base.*
-import abdulmanov.eduard.recipes.presentation.ui.model.CategoryVM
-import abdulmanov.eduard.recipes.presentation.ui.model.LoadingVM
-import abdulmanov.eduard.recipes.presentation.ui.model.LoadingVM.*
+import abdulmanov.eduard.recipes.presentation.ui.models.CategoryPresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.models.LoadingPresentationModel
+import abdulmanov.eduard.recipes.presentation.ui.models.LoadingPresentationModel.*
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -29,16 +29,15 @@ import javax.inject.Inject
 
 class CategoryFragment : Fragment(R.layout.fragment_category), BackButtonListener {
 
+    private lateinit var category: CategoryPresentationModel
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
     private lateinit var viewModel: CategoryViewModel
-
-    private lateinit var category: CategoryVM
 
     private lateinit var adapter: DiffUtilCompositeAdapter
     private lateinit var scrollListener: LinearInfiniteScrollListener
-    private var loadingItem = LoadingVM()
+    private var loadingItem = LoadingPresentationModel()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -57,16 +56,11 @@ class CategoryFragment : Fragment(R.layout.fragment_category), BackButtonListene
             .get(CategoryViewModel::class.java)
             .apply {
                 category = this@CategoryFragment.category.value
+
                 router = (parentFragment as RouterProvide).getRouter()
 
-                message.observe(
-                    viewLifecycleOwner,
-                    Observer(this@CategoryFragment::showMessage)
-                )
-                state.observe(
-                    viewLifecycleOwner,
-                    Observer(this@CategoryFragment::updateState)
-                )
+                message.observe(viewLifecycleOwner, Observer(this@CategoryFragment::showMessage))
+                state.observe(viewLifecycleOwner, Observer(this@CategoryFragment::updateState))
             }
 
         initUI()
@@ -160,64 +154,64 @@ class CategoryFragment : Fragment(R.layout.fragment_category), BackButtonListene
     private fun establishEmptyProgressState() {
         scrollListener.state = LinearInfiniteScrollListener.PaginationState.Ban
         category_content_swipe_refresh.isRefreshing = false
-        category_content_swipe_refresh.visibilityGone(false)
-        layout_progress_bar.visibilityGone(true)
-        layout_error.visibilityGone(false)
-        error_repeat_progress_bar.visibilityGone(false)
-        error_repeat_button.visibilityGone(false)
+        category_content_swipe_refresh.visibility(false)
+        layout_progress_bar.visibility(true)
+        layout_error.visibility(false)
+        error_repeat_progress_bar.visibility(false)
+        error_repeat_button.visibility(false)
     }
 
     private fun establishEmptyState() {
         scrollListener.state = LinearInfiniteScrollListener.PaginationState.Ban
         category_content_swipe_refresh.isRefreshing = false
-        category_content_swipe_refresh.visibilityGone(false)
-        layout_progress_bar.visibilityGone(false)
-        layout_error.visibilityGone(false)
-        error_repeat_progress_bar.visibilityGone(false)
-        error_repeat_button.visibilityGone(false)
+        category_content_swipe_refresh.visibility(false)
+        layout_progress_bar.visibility(false)
+        layout_error.visibility(false)
+        error_repeat_progress_bar.visibility(false)
+        error_repeat_button.visibility(false)
     }
 
     private fun establishEmptyErrorState(error: Throwable) {
         scrollListener.state = LinearInfiniteScrollListener.PaginationState.Ban
         category_content_swipe_refresh.isRefreshing = false
-        category_content_swipe_refresh.visibilityGone(false)
-        layout_progress_bar.visibilityGone(false)
-        layout_error.visibilityGone(true)
-        error_repeat_progress_bar.visibilityGone(false)
-        error_repeat_button.visibilityGone(true)
+        category_content_swipe_refresh.visibility(false)
+        layout_progress_bar.visibility(false)
+        layout_error.visibility(true)
+        error_repeat_progress_bar.visibility(false)
+        error_repeat_button.visibility(true)
         error_secondary_message.setText(error.handleError())
     }
 
     private fun establishEmptyProgressAfterErrorState(error: Throwable) {
         scrollListener.state = LinearInfiniteScrollListener.PaginationState.Ban
         category_content_swipe_refresh.isRefreshing = false
-        category_content_swipe_refresh.visibilityGone(false)
-        layout_progress_bar.visibilityGone(false)
-        layout_error.visibilityGone(true)
-        error_repeat_progress_bar.visibilityGone(true)
-        error_repeat_button.visibilityGone(false)
+        category_content_swipe_refresh.visibility(false)
+        layout_progress_bar.visibility(false)
+        layout_error.visibility(true)
+        error_repeat_progress_bar.visibility(true)
+        error_repeat_button.visibility(false)
         error_secondary_message.setText(error.handleError())
     }
 
     private fun establishDataState(data: List<IComparableItem>) {
         scrollListener.state = LinearInfiniteScrollListener.PaginationState.Allow
         category_content_swipe_refresh.isRefreshing = false
-        category_content_swipe_refresh.visibilityGone(true)
-        layout_progress_bar.visibilityGone(false)
-        layout_error.visibilityGone(false)
-        error_repeat_progress_bar.visibilityGone(false)
-        error_repeat_button.visibilityGone(false)
+        category_content_swipe_refresh.visibility(true)
+        layout_progress_bar.visibility(false)
+        layout_error.visibility(false)
+        error_repeat_progress_bar.visibility(false)
+        error_repeat_button.visibility(false)
         adapter.swapData(data)
     }
 
     private fun establishNewPageProgressState(data: List<IComparableItem>) {
         scrollListener.state = LinearInfiniteScrollListener.PaginationState.Ban
         category_content_swipe_refresh.isRefreshing = false
-        category_content_swipe_refresh.visibilityGone(true)
-        layout_progress_bar.visibilityGone(false)
-        layout_error.visibilityGone(false)
-        error_repeat_progress_bar.visibilityGone(false)
-        error_repeat_button.visibilityGone(false)
+        category_content_swipe_refresh.visibility(true)
+        layout_progress_bar.visibility(false)
+        layout_error.visibility(false)
+        error_repeat_progress_bar.visibility(false)
+        error_repeat_button.visibility(false)
         loadingItem = loadingItem.copy(state = LoadingViewModelState.Loading)
         adapter.swapData(data + loadingItem)
     }
@@ -225,11 +219,11 @@ class CategoryFragment : Fragment(R.layout.fragment_category), BackButtonListene
     private fun establishNewPageErrorState(data: List<IComparableItem>) {
         scrollListener.state = LinearInfiniteScrollListener.PaginationState.Ban
         category_content_swipe_refresh.isRefreshing = false
-        category_content_swipe_refresh.visibilityGone(true)
-        layout_progress_bar.visibilityGone(false)
-        layout_error.visibilityGone(false)
-        error_repeat_progress_bar.visibilityGone(false)
-        error_repeat_button.visibilityGone(false)
+        category_content_swipe_refresh.visibility(true)
+        layout_progress_bar.visibility(false)
+        layout_error.visibility(false)
+        error_repeat_progress_bar.visibility(false)
+        error_repeat_button.visibility(false)
         loadingItem = loadingItem.copy(state = LoadingViewModelState.Error)
         adapter.swapData(data + loadingItem)
     }
@@ -237,40 +231,40 @@ class CategoryFragment : Fragment(R.layout.fragment_category), BackButtonListene
     private fun establishFullDataState(data: List<IComparableItem>) {
         scrollListener.state = LinearInfiniteScrollListener.PaginationState.Ban
         category_content_swipe_refresh.isRefreshing = false
-        category_content_swipe_refresh.visibilityGone(true)
-        layout_progress_bar.visibilityGone(false)
-        layout_error.visibilityGone(false)
-        error_repeat_progress_bar.visibilityGone(false)
-        error_repeat_button.visibilityGone(false)
+        category_content_swipe_refresh.visibility(true)
+        layout_progress_bar.visibility(false)
+        layout_error.visibility(false)
+        error_repeat_progress_bar.visibility(false)
+        error_repeat_button.visibility(false)
         adapter.swapData(data)
     }
 
     private fun establishRefreshState(data: List<IComparableItem>) {
         scrollListener.state = LinearInfiniteScrollListener.PaginationState.Allow
         category_content_swipe_refresh.isRefreshing = true
-        category_content_swipe_refresh.visibilityGone(true)
-        layout_progress_bar.visibilityGone(false)
-        layout_error.visibilityGone(false)
-        error_repeat_progress_bar.visibilityGone(false)
-        error_repeat_button.visibilityGone(false)
+        category_content_swipe_refresh.visibility(true)
+        layout_progress_bar.visibility(false)
+        layout_error.visibility(false)
+        error_repeat_progress_bar.visibility(false)
+        error_repeat_button.visibility(false)
         adapter.swapData(data)
     }
 
     private fun establishRefreshAfterFullDataState(data: List<IComparableItem>) {
         scrollListener.state = LinearInfiniteScrollListener.PaginationState.Allow
         category_content_swipe_refresh.isRefreshing = true
-        category_content_swipe_refresh.visibilityGone(true)
-        layout_progress_bar.visibilityGone(false)
-        layout_error.visibilityGone(false)
-        error_repeat_progress_bar.visibilityGone(false)
-        error_repeat_button.visibilityGone(false)
+        category_content_swipe_refresh.visibility(true)
+        layout_progress_bar.visibility(false)
+        layout_error.visibility(false)
+        error_repeat_progress_bar.visibility(false)
+        error_repeat_button.visibility(false)
         adapter.swapData(data)
     }
 
     companion object {
         private const val CATEGORY = "CATEGORY"
 
-        fun newInstance(category: CategoryVM) =
+        fun newInstance(category: CategoryPresentationModel) =
             CategoryFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(CATEGORY, category)

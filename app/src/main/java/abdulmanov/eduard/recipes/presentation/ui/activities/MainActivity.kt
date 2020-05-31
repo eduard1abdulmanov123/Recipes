@@ -12,12 +12,13 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.main_container,RecipesContainerFragment())
+            val fragment = RecipesContainerFragment()
+            replace(R.id.mainContainer,fragment)
         }.commit()
     }
 
     override fun onBackPressed() {
-        val fragment = supportFragmentManager.findFragmentById(R.id.main_container)
+        val fragment = supportFragmentManager.findFragmentById(R.id.mainContainer)
         if(fragment!=null&&(fragment is BackButtonListener)&&fragment.onBackPressed()){
             return
         }else {

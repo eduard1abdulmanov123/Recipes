@@ -5,8 +5,8 @@ import abdulmanov.eduard.recipes.presentation.navigation.Screens
 import abdulmanov.eduard.recipes.presentation.ui.base.BaseViewModel
 import abdulmanov.eduard.recipes.presentation.ui.base.Event
 import abdulmanov.eduard.recipes.presentation.ui.base.Paginator
-import abdulmanov.eduard.recipes.presentation.ui.mapper.RecipesViewModelMapper
-import abdulmanov.eduard.recipes.presentation.ui.model.RecipeVM
+import abdulmanov.eduard.recipes.presentation.ui.mappers.RecipesPresentationModelMapper
+import abdulmanov.eduard.recipes.presentation.ui.models.RecipePresentationModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class CategoryViewModel @Inject constructor(
     private val getRecipesUseCase: GetRecipesUseCase,
-    private val mapper:RecipesViewModelMapper
+    private val mapper:RecipesPresentationModelMapper
 ):BaseViewModel() {
 
     var category: String? = null
@@ -32,7 +32,7 @@ class CategoryViewModel @Inject constructor(
     val state: LiveData<Paginator.State>
         get() = _state
 
-    private val paginator = Paginator.Store<RecipeVM>()
+    private val paginator = Paginator.Store<RecipePresentationModel>()
 
     private var pageDisposable: Disposable? = null
 
@@ -54,13 +54,13 @@ class CategoryViewModel @Inject constructor(
 
     fun onBackPressed() = router?.exit()
 
-    fun onClickRecipeItem(recipe:RecipeVM) = router?.navigateTo(Screens.DetailsRecipe(recipe))
+    fun onClickRecipeItem(recipe:RecipePresentationModel) = router?.navigateTo(Screens.DetailsRecipe(recipe))
 
     private fun loadNewPage(page: Int) {
         if(category != null) {
             pageDisposable?.dispose()
             pageDisposable = getRecipesUseCase.execute(category!!, page)
-                .map(mapper::mapRecipesToViewModels)
+                .map(mapper::mapRecipesToPresentationModel)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

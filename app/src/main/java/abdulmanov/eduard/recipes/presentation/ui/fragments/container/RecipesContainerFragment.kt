@@ -7,8 +7,6 @@ import android.view.View
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
 import abdulmanov.eduard.recipes.presentation.navigation.*
-import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryFragment
-import abdulmanov.eduard.recipes.presentation.ui.fragments.tape.TapeFragment
 import android.content.Context
 import android.util.Log
 import androidx.fragment.app.FragmentTransaction
@@ -32,13 +30,8 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),R
     }
 
     private val navigator:Navigator by lazy {
-       object : ContainerNavigator(childFragmentManager,R.id.recipes_container){
-           override fun setupFragmentTransaction(
-               command: Command,
-               currentFragment: Fragment?,
-               nextFragment: Fragment?,
-               fragmentTransaction: FragmentTransaction
-           ) {
+       object : ContainerNavigator(childFragmentManager,R.id.recipesContainer){
+           override fun setupFragmentTransaction(command: Command, currentFragment: Fragment?, nextFragment: Fragment?, fragmentTransaction: FragmentTransaction) {
                if(command is Forward){
                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                }else if(command is Back){
@@ -55,7 +48,7 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),R
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(childFragmentManager.findFragmentById(R.id.recipes_container) == null){
+        if(childFragmentManager.findFragmentById(R.id.recipesContainer) == null){
             cicerone.router.navigateTo(Screens.Tape)
         }
     }
@@ -76,7 +69,7 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),R
 
     override fun onBackPressed(): Boolean {
         return if(childFragmentManager.fragments.size>1){
-            val fragment = childFragmentManager.findFragmentById(R.id.recipes_container)
+            val fragment = childFragmentManager.findFragmentById(R.id.recipesContainer)
             fragment!=null && (fragment is BackButtonListener) && fragment.onBackPressed()
         }else{
             false

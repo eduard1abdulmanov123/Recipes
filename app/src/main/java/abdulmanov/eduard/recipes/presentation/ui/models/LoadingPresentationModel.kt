@@ -1,10 +1,9 @@
-package abdulmanov.eduard.recipes.presentation.ui.model
+package abdulmanov.eduard.recipes.presentation.ui.models
 
-import android.util.Log
 import com.example.delegateadapter.delegate.diff.IComparableItem
 
 
-data class LoadingVM(
+data class LoadingPresentationModel(
     val id:Int = -1,
     var state:LoadingViewModelState = LoadingViewModelState.Loading
 ):IComparableItem{
@@ -17,4 +16,5 @@ data class LoadingVM(
         object Loading : LoadingViewModelState()
         object Error : LoadingViewModelState()
     }
+
 }

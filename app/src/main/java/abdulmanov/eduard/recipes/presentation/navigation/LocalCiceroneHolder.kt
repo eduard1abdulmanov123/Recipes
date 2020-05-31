@@ -11,7 +11,6 @@ class LocalCiceroneHolder {
         if(!containers.containsKey(containerTag)){
             containers[containerTag] = Cicerone.create()
         }
-        return containers[containerTag]!!
+        return containers.getValue(containerTag)
     }
-
 }

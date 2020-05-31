@@ -2,9 +2,7 @@ package abdulmanov.eduard.recipes.presentation.ui.fragments.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
@@ -12,8 +10,7 @@ import abdulmanov.eduard.recipes.presentation.navigation.BackButtonListener
 import abdulmanov.eduard.recipes.presentation.navigation.RouterProvide
 import abdulmanov.eduard.recipes.presentation.ui.base.ScreenState
 import abdulmanov.eduard.recipes.presentation.ui.base.ViewModelFactory
-import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryViewModel
-import abdulmanov.eduard.recipes.presentation.ui.model.RecipeVM
+import abdulmanov.eduard.recipes.presentation.ui.models.RecipePresentationModel
 import android.content.Context
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,7 +23,7 @@ class DetailsRecipeFragment : Fragment(R.layout.fragment_details_recipe),BackBut
 
     private lateinit var viewModel: DetailsRecipeViewModel
 
-    private lateinit var recipe:RecipeVM
+    private lateinit var recipe:RecipePresentationModel
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -64,7 +61,7 @@ class DetailsRecipeFragment : Fragment(R.layout.fragment_details_recipe),BackBut
     companion object {
         private const val RECIPE = "RECIPE"
 
-        fun newInstance(recipe:RecipeVM) =
+        fun newInstance(recipe:RecipePresentationModel) =
             DetailsRecipeFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(RECIPE, recipe)
