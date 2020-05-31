@@ -18,11 +18,11 @@ class LoadingDelegateAdapter (
 
     override fun onBind(item: LoadingPresentationModel, viewHolder: KViewHolder) {
         viewHolder.run {
-            item_list_loading_repeat.setOnClickListener {
+            itemListLoadingRepeat.setOnClickListener {
                 refreshClickListener.invoke()
             }
-            item_list_loading_progress_bar.visibility(item.state == LoadingPresentationModel.LoadingViewModelState.Loading)
-            item_list_loading_repeat.visibility(item.state == LoadingPresentationModel.LoadingViewModelState.Error)
+            itemListLoadingProgressBar.visibility(item.state == LoadingPresentationModel.LoadingViewModelState.Loading)
+            itemListLoadingRepeat.visibility(item.state == LoadingPresentationModel.LoadingViewModelState.Error)
         }
     }
 }

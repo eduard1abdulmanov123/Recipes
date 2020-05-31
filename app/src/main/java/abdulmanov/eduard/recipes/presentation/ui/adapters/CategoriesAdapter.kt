@@ -28,14 +28,14 @@ class CategoriesAdapter(
 
         override fun bind(model: CategoryPresentationModel, position: Int) {
             itemView.run {
-                item_list_category_image.loadImg(model.image)
-                item_list_category_name.text = model.name
-                item_list_category_count_recipe.text = model.countRecipes
+                itemListCategoryImage.loadImg(model.image)
+                itemListCategoryName.text = model.name
+                itemListCategoryCountRecipe.text = model.countRecipes
             }
         }
 
         private fun initSize() {
-            itemView.item_list_category_card_view.run {
+            itemView.itemListCategoryCardView.run {
                 val size = context.getScreenSize()
                 layoutParams.width = (size.x * 0.47).toInt()
                 layoutParams.height = layoutParams.width

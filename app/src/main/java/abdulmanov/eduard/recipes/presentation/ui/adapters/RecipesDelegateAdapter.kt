@@ -20,16 +20,16 @@ class RecipesDelegateAdapter (
         viewHolder.run {
             itemView.setOnClickListener { itemViewClickListener.invoke(item) }
             if (item.image.isNotEmpty()) {
-                item_list_recipe_image.loadImg(item.image, R.color.color_placeholder)
+                itemListRecipeImage.loadImg(item.image, R.color.color_placeholder)
             } else {
-                item_list_recipe_image.loadImg(R.drawable.placeholder, R.color.color_placeholder)
+                itemListRecipeImage.loadImg(R.drawable.placeholder, R.color.color_placeholder)
             }
-            item_list_recipe_name.text = item.name
-            item_list_recipe_count_ingredients.text = item.countIngredient
-            item_list_recipe_count_portions.text = item.countPortion
-            item_list_recipe_time.text = item.time
-            item_list_recipe_thumb_up.text = item.countLike
-            item_list_recipe_thumb_down.text = item.countDislike
+            itemListRecipeName.text = item.name
+            itemListRecipeCountIngredients.text = item.countIngredient
+            itemListRecipeCountPortions.text = item.countPortion
+            itemListRecipeTime.text = item.time
+            itemListRecipeThumbUp.text = item.countLike
+            itemListRecipeThumbDown.text = item.countDislike
         }
     }
 }

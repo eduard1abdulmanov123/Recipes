@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/best_recipe_card_view"
+    android:id="@+id/bestRecipeCardView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp">
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/best_recipe_image"
+            android:id="@+id/bestRecipeImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -20,19 +21,19 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@id/best_recipe_image"
-            android:layout_alignStart="@id/best_recipe_image"
-            android:layout_alignEnd="@id/best_recipe_image"
+            android:layout_below="@id/bestRecipeImage"
+            android:layout_alignStart="@id/bestRecipeImage"
+            android:layout_alignEnd="@id/bestRecipeImage"
             android:layout_marginTop="-40dp">
 
             <View
-                android:id="@+id/best_recipe_blackout"
+                android:id="@+id/bestRecipeBlackout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/gradient_blackout_bottom_to_top" />
 
             <ImageView
-                android:id="@+id/best_recipe_count_like_image"
+                android:id="@+id/bestRecipeCountLikeImage"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_centerVertical="true"
@@ -41,17 +42,17 @@
                 android:tint="@android:color/white" />
 
             <TextView
-                android:id="@+id/best_recipe_count_like"
+                android:id="@+id/bestRecipeCountLike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/best_recipe_count_like_image"
+                android:layout_toEndOf="@id/bestRecipeCountLikeImage"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="4dp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/best_recipe_time"
+                android:id="@+id/bestRecipeTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -63,12 +64,12 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/best_recipe_name"
+            android:id="@+id/bestRecipeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/best_recipe_image"
-            android:layout_alignStart="@id/best_recipe_image"
-            android:layout_alignEnd="@id/best_recipe_image"
+            android:layout_below="@id/bestRecipeImage"
+            android:layout_alignStart="@id/bestRecipeImage"
+            android:layout_alignEnd="@id/bestRecipeImage"
             android:layout_margin="8dp"
             android:textSize="15sp"
             android:textColor="@color/color_text_primary"
