@@ -11,8 +11,8 @@ import javax.inject.Singleton
 
 @Singleton
 class RecipesPresentationModelMapperImpl @Inject constructor(
-    private val context:Context
-):RecipesPresentationModelMapper {
+    private val context: Context
+) : RecipesPresentationModelMapper {
 
     override fun mapRecipesToPresentationModel(recipes: List<Recipe>): List<RecipePresentationModel> {
         return recipes.map {
@@ -36,7 +36,7 @@ class RecipesPresentationModelMapperImpl @Inject constructor(
         )
     }
 
-    private fun mapCategoriesToViewModels(categories:List<Category>):List<CategoryPresentationModel>{
+    private fun mapCategoriesToViewModels(categories: List<Category>): List<CategoryPresentationModel> {
         return categories.map {
             CategoryPresentationModel(
                 image = it.getDrawable(),

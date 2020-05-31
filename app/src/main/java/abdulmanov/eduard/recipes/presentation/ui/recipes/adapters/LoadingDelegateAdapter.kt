@@ -6,9 +6,9 @@ import abdulmanov.eduard.recipes.presentation.ui.recipes.models.LoadingPresentat
 import com.example.delegateadapter.delegate.KDelegateAdapter
 import kotlinx.android.synthetic.main.item_list_loading.*
 
-class LoadingDelegateAdapter (
-    private val refreshClickListener:()->Unit?
-) : KDelegateAdapter<LoadingPresentationModel>(){
+class LoadingDelegateAdapter(
+    private val refreshClickListener: () -> Unit?
+) : KDelegateAdapter<LoadingPresentationModel>() {
 
     override fun getLayoutId() = R.layout.item_list_loading
 

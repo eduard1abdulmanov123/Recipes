@@ -9,15 +9,15 @@ import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 object Screens {
 
-    object Tape:SupportAppScreen(){
+    object Tape : SupportAppScreen() {
         override fun getFragment() = TapeFragment()
     }
 
-    data class Category(val category:CategoryPresentationModel):SupportAppScreen(){
+    data class Category(val category: CategoryPresentationModel) : SupportAppScreen() {
         override fun getFragment() = CategoryFragment.newInstance(category)
     }
 
-    data class DetailsRecipe(val recipe:RecipePresentationModel):SupportAppScreen(){
+    data class DetailsRecipe(val recipe: RecipePresentationModel) : SupportAppScreen() {
         override fun getFragment() = DetailsRecipeFragment.newInstance(recipe)
     }
 }

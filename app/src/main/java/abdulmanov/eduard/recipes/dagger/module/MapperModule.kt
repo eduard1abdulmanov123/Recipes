@@ -10,5 +10,4 @@ abstract class MapperModule {
 
     @Binds
     abstract fun bindRecipesViewModelMapper(recipesViewModelMapperImpl: RecipesPresentationModelMapperImpl): RecipesPresentationModelMapper
-
 }

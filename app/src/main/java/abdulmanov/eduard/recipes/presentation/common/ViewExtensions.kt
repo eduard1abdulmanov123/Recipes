@@ -13,13 +13,13 @@ fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
 }
 
-fun View.visibility(show:Boolean, type:Int = View.GONE){
+fun View.visibility(show: Boolean, type: Int = View.GONE) {
 
     if (show && visibility == View.VISIBLE) return
 
-    if(!show && visibility==type) return
+    if (!show && visibility == type) return
 
-    visibility = if(show) View.VISIBLE else type
+    visibility = if (show) View.VISIBLE else type
 }
 
 fun Context.getScreenSize(): Point {

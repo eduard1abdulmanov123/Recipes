@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().apply {
                 val fragment = RecipesContainerFragment()
                 replace(R.id.mainContainer, fragment)
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         val fragment = supportFragmentManager.findFragmentById(R.id.mainContainer)
-        if(fragment!=null&&(fragment is BackButtonListener)&&fragment.onBackPressed()){
+        if (fragment != null && (fragment is BackButtonListener) && fragment.onBackPressed()) {
             return
         } else {
             super.onBackPressed()

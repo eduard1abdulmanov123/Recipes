@@ -17,8 +17,8 @@ import javax.inject.Inject
 
 class CategoryViewModel @Inject constructor(
     private val getRecipesUseCase: GetRecipesUseCase,
-    private val mapper:RecipesPresentationModelMapper
-):BaseViewModel() {
+    private val mapper: RecipesPresentationModelMapper
+) : BaseViewModel() {
 
     var category: String? = null
 
@@ -54,7 +54,7 @@ class CategoryViewModel @Inject constructor(
 
     fun onBackPressed() = router?.exit()
 
-    fun onClickRecipeItem(recipe:RecipePresentationModel) = router?.navigateTo(Screens.DetailsRecipe(recipe))
+    fun onClickRecipeItem(recipe: RecipePresentationModel) = router?.navigateTo(Screens.DetailsRecipe(recipe))
 
     private fun loadNewPage(page: Int) {
         if (category != null) {

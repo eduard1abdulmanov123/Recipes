@@ -15,8 +15,8 @@ import javax.inject.Inject
 
 class TapeViewModel @Inject constructor(
     private val useCase: GetTapeUseCase,
-    private val mapper:RecipesPresentationModelMapper
-):BaseViewModel() {
+    private val mapper: RecipesPresentationModelMapper
+) : BaseViewModel() {
 
     var router: Router? = null
 
@@ -24,17 +24,17 @@ class TapeViewModel @Inject constructor(
     val state: LiveData<ScreenState>
         get() = _state
 
-    fun loadTape(){
+    fun loadTape() {
         _state.value = ScreenState.Progress
         getTape()
     }
 
-    fun repeat(){
+    fun repeat() {
         _state.value = ScreenState.ProgressAfterError
         getTape()
     }
 
-    private fun getTape(){
+    private fun getTape() {
         useCase.execute()
             .map(mapper::mapTapeToPresentationModel)
             .safeSubscribe(
@@ -49,8 +49,7 @@ class TapeViewModel @Inject constructor(
 
     fun onBackPressed() = router?.exit()
 
-    fun onClickCategoryItem(category:CategoryPresentationModel) = router?.navigateTo(Screens.Category(category))
+    fun onClickCategoryItem(category: CategoryPresentationModel) = router?.navigateTo(Screens.Category(category))
 
-    fun onClickBestRecipeItem(recipe:RecipePresentationModel) = router?.navigateTo(Screens.DetailsRecipe(recipe))
-
+    fun onClickBestRecipeItem(recipe: RecipePresentationModel) = router?.navigateTo(Screens.DetailsRecipe(recipe))
 }

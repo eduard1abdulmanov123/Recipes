@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_category.view.*
 
 class CategoriesAdapter(
-    private val itemViewClickListener:(CategoryPresentationModel) -> Unit?
+    private val itemViewClickListener: (CategoryPresentationModel) -> Unit?
 ) : BaseAdapter<CategoryPresentationModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<CategoryPresentationModel> {

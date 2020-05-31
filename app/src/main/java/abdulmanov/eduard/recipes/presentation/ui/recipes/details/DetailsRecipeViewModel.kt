@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 class DetailsRecipeViewModel @Inject constructor(
     private val getDetailsRecipeUseCase: GetDetailsRecipeUseCase,
-    private val mapper:RecipesPresentationModelMapper
-):BaseViewModel() {
+    private val mapper: RecipesPresentationModelMapper
+) : BaseViewModel() {
 
     var router: Router? = null
 

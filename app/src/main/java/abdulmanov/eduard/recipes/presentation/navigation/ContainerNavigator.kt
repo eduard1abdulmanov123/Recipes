@@ -1,6 +1,5 @@
 package abdulmanov.eduard.recipes.presentation.navigation
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -38,7 +37,7 @@ open class ContainerNavigator(
             setupFragmentTransaction(command, currentFragment, newFragment, this)
 
             currentFragment?.let { hide(it) }
-            add(containerId,newFragment)
+            add(containerId, newFragment)
         }.commit()
     }
 
@@ -46,7 +45,7 @@ open class ContainerNavigator(
         fragmentManager.beginTransaction().apply {
             val fragments = fragmentManager.fragments
             val currentFragment = fragments.lastOrNull()
-            val newFragment = fragments.getOrNull(fragments.size-2)
+            val newFragment = fragments.getOrNull(fragments.size - 2)
 
             setupFragmentTransaction(command, currentFragment, newFragment, this)
 

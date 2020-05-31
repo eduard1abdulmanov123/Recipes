@@ -11,8 +11,8 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_list_best_recipe.view.*
 
 class BestRecipesAdapter(
-    private val itemViewClickListener:(RecipePresentationModel)->Unit?
-): BaseAdapter<RecipePresentationModel>() {
+    private val itemViewClickListener: (RecipePresentationModel) -> Unit?
+) : BaseAdapter<RecipePresentationModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<RecipePresentationModel> {
         return ViewHolder(parent.inflate(R.layout.item_list_best_recipe))
@@ -54,6 +54,5 @@ class BestRecipesAdapter(
                 itemViewClickListener.invoke(dataList[adapterPosition])
             }
         }
-
     }
 }

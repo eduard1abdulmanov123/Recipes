@@ -26,12 +26,12 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container), 
         ciceroneHolder.getCicerone(CONTAINER_NAME)
     }
 
-    private val navigator:Navigator by lazy {
-       object : ContainerNavigator(childFragmentManager,R.id.recipesContainer){
+    private val navigator: Navigator by lazy {
+       object : ContainerNavigator(childFragmentManager, R.id.recipesContainer) {
            override fun setupFragmentTransaction(command: Command, currentFragment: Fragment?, nextFragment: Fragment?, fragmentTransaction: FragmentTransaction) {
-               if(command is Forward){
+               if (command is Forward) {
                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-               }else if(command is Back){
+               } else if (command is Back) {
                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                }
            }
@@ -45,7 +45,7 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container), 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(childFragmentManager.findFragmentById(R.id.recipesContainer) == null){
+        if (childFragmentManager.findFragmentById(R.id.recipesContainer) == null) {
             cicerone.router.navigateTo(Screens.Tape)
         }
     }
@@ -65,10 +65,10 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container), 
     }
 
     override fun onBackPressed(): Boolean {
-        return if(childFragmentManager.fragments.size>1){
+        return if (childFragmentManager.fragments.size> 1) {
             val fragment = childFragmentManager.findFragmentById(R.id.recipesContainer)
-            fragment!=null && (fragment is BackButtonListener) && fragment.onBackPressed()
-        }else{
+            fragment != null && (fragment is BackButtonListener) && fragment.onBackPressed()
+        } else {
             false
         }
     }

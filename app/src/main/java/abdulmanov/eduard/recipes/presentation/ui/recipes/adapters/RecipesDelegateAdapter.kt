@@ -6,8 +6,8 @@ import abdulmanov.eduard.recipes.presentation.ui.recipes.models.RecipePresentati
 import com.example.delegateadapter.delegate.KDelegateAdapter
 import kotlinx.android.synthetic.main.item_list_recipe.*
 
-class RecipesDelegateAdapter (
-    private val itemViewClickListener:(RecipePresentationModel)->Unit?
+class RecipesDelegateAdapter(
+    private val itemViewClickListener: (RecipePresentationModel) -> Unit?
 ) : KDelegateAdapter<RecipePresentationModel>() {
 
     override fun getLayoutId() = R.layout.item_list_recipe
