@@ -6,12 +6,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.android.support.SupportAppScreen
-import ru.terrakok.cicerone.commands.*
+import ru.terrakok.cicerone.commands.Back
+import ru.terrakok.cicerone.commands.Command
+import ru.terrakok.cicerone.commands.Forward
 
 open class ContainerNavigator(
-    private val fragmentManager:FragmentManager,
-    private val containerId:Int
-):Navigator {
+    private val fragmentManager: FragmentManager,
+    private val containerId: Int
+) : Navigator {
 
     override fun applyCommands(commands: Array<out Command>) {
         fragmentManager.executePendingTransactions()
@@ -20,14 +22,14 @@ open class ContainerNavigator(
         }
     }
 
-    private fun applyCommand(command:Command){
-        when(command){
+    private fun applyCommand(command: Command) {
+        when (command) {
             is Forward -> forward(command)
             is Back -> back(command)
         }
     }
 
-    private fun forward(command: Forward){
+    private fun forward(command: Forward) {
         fragmentManager.beginTransaction().apply {
             val fragments = fragmentManager.fragments
             val currentFragment = fragments.lastOrNull()
@@ -40,15 +42,14 @@ open class ContainerNavigator(
         }.commit()
     }
 
-
-    private fun back(command: Command){
+    private fun back(command: Command) {
         fragmentManager.beginTransaction().apply {
             val fragments = fragmentManager.fragments
             val currentFragment = fragments.lastOrNull()
             val newFragment = fragments.getOrNull(fragments.size-2)
 
             setupFragmentTransaction(command, currentFragment, newFragment, this)
-            
+
             currentFragment?.let { remove(it) }
             newFragment?.let { show(it) }
         }.commit()

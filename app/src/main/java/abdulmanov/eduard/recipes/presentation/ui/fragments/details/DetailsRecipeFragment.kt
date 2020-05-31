@@ -1,8 +1,5 @@
 package abdulmanov.eduard.recipes.presentation.ui.fragments.details
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.View
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
@@ -12,11 +9,14 @@ import abdulmanov.eduard.recipes.presentation.ui.base.ScreenState
 import abdulmanov.eduard.recipes.presentation.ui.base.ViewModelFactory
 import abdulmanov.eduard.recipes.presentation.ui.models.RecipePresentationModel
 import android.content.Context
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 
-class DetailsRecipeFragment : Fragment(R.layout.fragment_details_recipe),BackButtonListener {
+class DetailsRecipeFragment : Fragment(R.layout.fragment_details_recipe), BackButtonListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -54,8 +54,7 @@ class DetailsRecipeFragment : Fragment(R.layout.fragment_details_recipe),BackBut
         return true
     }
 
-    private fun updateState(state:ScreenState){
-
+    private fun updateState(state: ScreenState) {
     }
 
     companion object {

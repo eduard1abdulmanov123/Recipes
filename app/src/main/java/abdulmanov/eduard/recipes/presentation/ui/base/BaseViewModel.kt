@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-abstract class BaseViewModel: ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -23,7 +23,7 @@ abstract class BaseViewModel: ViewModel() {
         compositeDisposable.add(disposable)
     }
 
-    protected fun Disposable.connect(){
+    protected fun Disposable.connect() {
         compositeDisposable.add(this)
     }
 }

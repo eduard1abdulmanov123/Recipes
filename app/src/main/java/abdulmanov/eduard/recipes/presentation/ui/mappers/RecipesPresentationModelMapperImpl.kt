@@ -42,13 +42,17 @@ class RecipesPresentationModelMapperImpl @Inject constructor(
                 image = it.getDrawable(),
                 name = it.name,
                 value = it.value,
-                countRecipes = context.resources.getQuantityString(R.plurals.count_recipes,it.countRecipes,it.countRecipes)
+                countRecipes = context.resources.getQuantityString(
+                    R.plurals.count_recipes,
+                    it.countRecipes,
+                    it.countRecipes
+                )
             )
         }
     }
 
-    private fun Category.getDrawable():Int{
-        return when(value){
+    private fun Category.getDrawable(): Int {
+        return when (value) {
             "zagotovki" -> R.drawable.zagotovki
             "salaty" -> R.drawable.salaty
             "pasta-picca" -> R.drawable.pasta_picca

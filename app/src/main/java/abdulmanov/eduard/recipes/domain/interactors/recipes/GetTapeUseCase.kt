@@ -8,7 +8,7 @@ import io.reactivex.functions.BiFunction
 
 class GetTapeUseCase(
     private val recipesRepository: RecipesRepository
-):SingleUseCase<Tape> {
+) : SingleUseCase<Tape> {
 
     override fun execute(): Single<Tape> {
         return Single.zip(

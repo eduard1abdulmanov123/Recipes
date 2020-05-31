@@ -1,6 +1,5 @@
 package abdulmanov.eduard.recipes.presentation.ui.base
 
-import android.util.AndroidException
 import android.util.Log
 import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable

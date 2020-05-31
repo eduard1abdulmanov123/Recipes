@@ -31,5 +31,4 @@ open class LinearInfiniteScrollListener(
         object Allow : PaginationState()
         object Ban : PaginationState()
     }
-
 }

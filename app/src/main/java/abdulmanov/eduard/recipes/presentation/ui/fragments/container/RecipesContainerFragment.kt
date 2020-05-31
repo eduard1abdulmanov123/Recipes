@@ -1,31 +1,28 @@
 package abdulmanov.eduard.recipes.presentation.ui.fragments.container
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.View
-
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
 import abdulmanov.eduard.recipes.presentation.navigation.*
 import android.content.Context
-import android.util.Log
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Back
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
-import java.util.*
 import javax.inject.Inject
 
-class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),RouterProvide,BackButtonListener {
+class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container), RouterProvide,
+    BackButtonListener {
 
     @Inject
     lateinit var ciceroneHolder: LocalCiceroneHolder
 
-    private val cicerone:Cicerone<Router> by lazy {
+    private val cicerone: Cicerone<Router> by lazy {
         ciceroneHolder.getCicerone(CONTAINER_NAME)
     }
 
@@ -76,7 +73,7 @@ class RecipesContainerFragment : Fragment(R.layout.fragment_recipes_container),R
         }
     }
 
-    companion object{
+    companion object {
         private const val CONTAINER_NAME = "RECIPES"
     }
 }

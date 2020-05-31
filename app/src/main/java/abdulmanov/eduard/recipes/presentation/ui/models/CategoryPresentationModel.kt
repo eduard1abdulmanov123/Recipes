@@ -7,8 +7,8 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class CategoryPresentationModel(
     @DrawableRes
-    val image:Int,
-    val name:String,
-    val value:String,
-    val countRecipes:String
-):Parcelable
+    val image: Int,
+    val name: String,
+    val value: String,
+    val countRecipes: String
+) : Parcelable

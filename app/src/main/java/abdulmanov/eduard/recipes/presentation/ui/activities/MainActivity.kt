@@ -6,7 +6,7 @@ import abdulmanov.eduard.recipes.presentation.ui.fragments.container.RecipesCont
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(){
         val fragment = supportFragmentManager.findFragmentById(R.id.mainContainer)
         if(fragment!=null&&(fragment is BackButtonListener)&&fragment.onBackPressed()){
             return
-        }else {
+        } else {
             super.onBackPressed()
         }
     }

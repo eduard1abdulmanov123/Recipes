@@ -10,7 +10,7 @@ import javax.inject.Singleton
 @Module
 class NavigationModule() {
 
-    private val cicerone:Cicerone<Router> = Cicerone.create()
+    private val cicerone: Cicerone<Router> = Cicerone.create()
 
     @Singleton
     @Provides
@@ -23,6 +23,4 @@ class NavigationModule() {
     fun provideNavigationHolder(): NavigatorHolder {
         return cicerone.navigatorHolder
     }
-
-
 }

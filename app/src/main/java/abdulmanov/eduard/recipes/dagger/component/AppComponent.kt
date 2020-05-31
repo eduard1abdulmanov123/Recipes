@@ -23,7 +23,7 @@ import javax.inject.Singleton
         LocalNavigationModule::class
     ]
 )
-interface AppComponent{
+interface AppComponent {
 
     @Component.Factory
     interface Factory {
@@ -36,7 +36,7 @@ interface AppComponent{
 
     fun inject(tapeFragment: TapeFragment)
 
-    fun inject(categoryFragment:CategoryFragment)
+    fun inject(categoryFragment: CategoryFragment)
 
     fun inject(detailsRecipeFragment: DetailsRecipeFragment)
 }

@@ -18,10 +18,10 @@ class TapeViewModel @Inject constructor(
     private val mapper:RecipesPresentationModelMapper
 ):BaseViewModel() {
 
-    var router:Router? = null
+    var router: Router? = null
 
     private val _state = MutableLiveData<ScreenState>()
-    val state:LiveData<ScreenState>
+    val state: LiveData<ScreenState>
         get() = _state
 
     fun loadTape(){

@@ -1,6 +1,5 @@
 package abdulmanov.eduard.recipes.presentation.ui.models
 
-
 import android.os.Parcelable
 import com.example.delegateadapter.delegate.diff.IComparableItem
 import kotlinx.android.parcel.Parcelize

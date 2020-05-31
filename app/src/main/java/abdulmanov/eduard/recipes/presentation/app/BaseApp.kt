@@ -6,11 +6,7 @@ import android.app.Application
 import com.squareup.picasso.LruCache
 import com.squareup.picasso.Picasso
 
-class BaseApp:Application() {
-
-    companion object {
-        private const val MAX_CACHE = 250_000_000
-    }
+class BaseApp : Application() {
 
     val appComponent: AppComponent by lazy {
         DaggerAppComponent.factory().create(applicationContext)
@@ -19,7 +15,7 @@ class BaseApp:Application() {
     override fun onCreate() {
         super.onCreate()
         initPicasso()
-        //RxJavaPlugins.setErrorHandler { }
+        // RxJavaPlugins.setErrorHandler { }
     }
 
     private fun initPicasso() {
@@ -27,5 +23,9 @@ class BaseApp:Application() {
             .memoryCache(LruCache(MAX_CACHE))
             .build()
         Picasso.setSingletonInstance(picasso)
+    }
+
+    companion object {
+        private const val MAX_CACHE = 250_000_000
     }
 }

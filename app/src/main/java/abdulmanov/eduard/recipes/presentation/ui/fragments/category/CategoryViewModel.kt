@@ -57,7 +57,7 @@ class CategoryViewModel @Inject constructor(
     fun onClickRecipeItem(recipe:RecipePresentationModel) = router?.navigateTo(Screens.DetailsRecipe(recipe))
 
     private fun loadNewPage(page: Int) {
-        if(category != null) {
+        if (category != null) {
             pageDisposable?.dispose()
             pageDisposable = getRecipesUseCase.execute(category!!, page)
                 .map(mapper::mapRecipesToPresentationModel)
@@ -72,7 +72,7 @@ class CategoryViewModel @Inject constructor(
                     }
                 )
             pageDisposable?.connect()
-        }else{
+        } else {
             throw NullPointerException("Category should not be empty")
         }
     }

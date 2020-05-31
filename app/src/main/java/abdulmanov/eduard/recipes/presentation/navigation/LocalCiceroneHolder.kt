@@ -5,10 +5,10 @@ import ru.terrakok.cicerone.Router
 
 class LocalCiceroneHolder {
 
-    private val containers:HashMap<String, Cicerone<Router>> = hashMapOf()
+    private val containers: HashMap<String, Cicerone<Router>> = hashMapOf()
 
-    fun getCicerone(containerTag:String):Cicerone<Router>{
-        if(!containers.containsKey(containerTag)){
+    fun getCicerone(containerTag: String): Cicerone<Router> {
+        if (!containers.containsKey(containerTag)) {
             containers[containerTag] = Cicerone.create()
         }
         return containers.getValue(containerTag)
