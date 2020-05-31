@@ -11,10 +11,12 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportFragmentManager.beginTransaction().apply {
-            val fragment = RecipesContainerFragment()
-            replace(R.id.mainContainer,fragment)
-        }.commit()
+        if(savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().apply {
+                val fragment = RecipesContainerFragment()
+                replace(R.id.mainContainer, fragment)
+            }.commit()
+        }
     }
 
     override fun onBackPressed() {
