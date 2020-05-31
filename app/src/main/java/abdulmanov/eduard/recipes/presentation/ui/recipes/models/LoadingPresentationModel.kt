@@ -1,8 +1,8 @@
-package abdulmanov.eduard.recipes.presentation.ui.model
+package abdulmanov.eduard.recipes.presentation.ui.recipes.models
 
 import com.example.delegateadapter.delegate.diff.IComparableItem
 
-data class LoadingVM(
+data class LoadingPresentationModel(
     val id: Int = -1,
     var state: LoadingViewModelState = LoadingViewModelState.Loading
 ) : IComparableItem {

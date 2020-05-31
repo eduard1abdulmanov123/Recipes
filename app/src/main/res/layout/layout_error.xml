@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layout_error"
+    android:id="@+id/layoutError"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/error_image"
+        android:id="@+id/errorImage"
         android:layout_width="230dp"
         android:layout_height="115dp"
         android:layout_marginBottom="100dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/error_main_message"
+        android:id="@+id/errorMainMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -27,10 +27,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/error_image" />
+        app:layout_constraintTop_toBottomOf="@+id/errorImage" />
 
     <TextView
-        android:id="@+id/error_secondary_message"
+        android:id="@+id/errorSecondaryMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -44,10 +44,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/error_main_message" />
+        app:layout_constraintTop_toBottomOf="@+id/errorMainMessage" />
 
     <TextView
-        android:id="@+id/error_repeat_button"
+        android:id="@+id/errorRepeatButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -63,15 +63,15 @@
         android:text="@string/error_refresh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/error_secondary_message" />
+        app:layout_constraintTop_toBottomOf="@+id/errorSecondaryMessage" />
 
     <ProgressBar
-        android:id="@+id/error_repeat_progress_bar"
+        android:id="@+id/errorRepeatProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/error_secondary_message" />
+        app:layout_constraintTop_toBottomOf="@+id/errorSecondaryMessage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

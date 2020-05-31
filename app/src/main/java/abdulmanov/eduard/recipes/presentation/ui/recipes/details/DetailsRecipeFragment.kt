@@ -1,4 +1,4 @@
-package abdulmanov.eduard.recipes.presentation.ui.fragments.details
+package abdulmanov.eduard.recipes.presentation.ui.recipes.details
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.presentation.app.BaseApp
@@ -6,7 +6,7 @@ import abdulmanov.eduard.recipes.presentation.navigation.BackButtonListener
 import abdulmanov.eduard.recipes.presentation.navigation.RouterProvide
 import abdulmanov.eduard.recipes.presentation.ui.base.ScreenState
 import abdulmanov.eduard.recipes.presentation.ui.base.ViewModelFactory
-import abdulmanov.eduard.recipes.presentation.ui.model.RecipeVM
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.RecipePresentationModel
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -22,7 +22,7 @@ class DetailsRecipeFragment : Fragment(R.layout.fragment_details_recipe), BackBu
 
     private lateinit var viewModel: DetailsRecipeViewModel
 
-    private lateinit var recipe: RecipeVM
+    private lateinit var recipe: RecipePresentationModel
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -59,7 +59,7 @@ class DetailsRecipeFragment : Fragment(R.layout.fragment_details_recipe), BackBu
     companion object {
         private const val RECIPE = "RECIPE"
 
-        fun newInstance(recipe: RecipeVM) =
+        fun newInstance(recipe: RecipePresentationModel) =
             DetailsRecipeFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(RECIPE, recipe)

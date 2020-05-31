@@ -1,11 +1,11 @@
-package abdulmanov.eduard.recipes.presentation.ui.model
+package abdulmanov.eduard.recipes.presentation.ui.recipes.models
 
 import android.os.Parcelable
 import com.example.delegateadapter.delegate.diff.IComparableItem
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class RecipeVM(
+data class RecipePresentationModel(
     val id: Long,
     val name: String,
     val image: String,

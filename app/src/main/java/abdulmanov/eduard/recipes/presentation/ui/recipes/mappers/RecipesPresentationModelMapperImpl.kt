@@ -1,24 +1,22 @@
-package abdulmanov.eduard.recipes.presentation.ui.mapper
+package abdulmanov.eduard.recipes.presentation.ui.recipes.mappers
 
 import abdulmanov.eduard.recipes.R
 import abdulmanov.eduard.recipes.domain.models.Category
 import abdulmanov.eduard.recipes.domain.models.Recipe
 import abdulmanov.eduard.recipes.domain.models.Tape
-import abdulmanov.eduard.recipes.presentation.ui.model.CategoryVM
-import abdulmanov.eduard.recipes.presentation.ui.model.RecipeVM
-import abdulmanov.eduard.recipes.presentation.ui.model.TapeVM
+import abdulmanov.eduard.recipes.presentation.ui.recipes.models.*
 import android.content.Context
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RecipesViewModelMapperImpl @Inject constructor(
+class RecipesPresentationModelMapperImpl @Inject constructor(
     private val context: Context
-) : RecipesViewModelMapper {
+) : RecipesPresentationModelMapper {
 
-    override fun mapRecipesToViewModels(recipes: List<Recipe>): List<RecipeVM> {
+    override fun mapRecipesToPresentationModel(recipes: List<Recipe>): List<RecipePresentationModel> {
         return recipes.map {
-            RecipeVM(
+            RecipePresentationModel(
                 it.id,
                 it.name,
                 it.image,
@@ -31,16 +29,16 @@ class RecipesViewModelMapperImpl @Inject constructor(
         }
     }
 
-    override fun mapTapeToViewModels(tape: Tape): TapeVM {
-        return TapeVM(
-            bestRecipes = mapRecipesToViewModels(tape.bestRecipes),
+    override fun mapTapeToPresentationModel(tape: Tape): TapePresentationModel {
+        return TapePresentationModel(
+            bestRecipes = mapRecipesToPresentationModel(tape.bestRecipes),
             categories = mapCategoriesToViewModels(tape.categories)
         )
     }
 
-    private fun mapCategoriesToViewModels(categories: List<Category>): List<CategoryVM> {
+    private fun mapCategoriesToViewModels(categories: List<Category>): List<CategoryPresentationModel> {
         return categories.map {
-            CategoryVM(
+            CategoryPresentationModel(
                 image = it.getDrawable(),
                 name = it.name,
                 value = it.value,

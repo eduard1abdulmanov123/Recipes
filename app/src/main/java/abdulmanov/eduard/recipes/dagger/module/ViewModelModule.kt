@@ -1,9 +1,9 @@
 package abdulmanov.eduard.recipes.dagger.module
 
 import abdulmanov.eduard.recipes.presentation.ui.base.ViewModelFactory
-import abdulmanov.eduard.recipes.presentation.ui.fragments.category.CategoryViewModel
-import abdulmanov.eduard.recipes.presentation.ui.fragments.details.DetailsRecipeViewModel
-import abdulmanov.eduard.recipes.presentation.ui.fragments.tape.TapeViewModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.category.CategoryViewModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.details.DetailsRecipeViewModel
+import abdulmanov.eduard.recipes.presentation.ui.recipes.tape.TapeViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
