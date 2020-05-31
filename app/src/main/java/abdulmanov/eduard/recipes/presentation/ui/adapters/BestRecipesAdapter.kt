@@ -30,21 +30,21 @@ class BestRecipesAdapter(
         override fun bind(model: RecipePresentationModel, position: Int) {
             itemView.run {
                 if (model.image.isNotEmpty()) {
-                    best_recipe_image.loadImg(model.image, R.color.color_placeholder)
+                    bestRecipeImage.loadImg(model.image, R.color.color_placeholder)
                 } else {
-                    best_recipe_image.loadImg(
+                    bestRecipeImage.loadImg(
                         R.drawable.placeholder,
                         R.color.color_placeholder
                     )
                 }
-                best_recipe_name.text = model.name
-                best_recipe_count_like.text = model.countLike
-                best_recipe_time.text = model.time
+                bestRecipeName.text = model.name
+                bestRecipeCountLike.text = model.countLike
+                bestRecipeTime.text = model.time
             }
         }
 
         private fun initSize() {
-            itemView.best_recipe_image.run {
+            itemView.bestRecipeImage.run {
                 val size = context.getScreenSize()
                 layoutParams.width = (size.x * 0.9).toInt()
                 layoutParams.height = (size.y * 0.3).toInt()
